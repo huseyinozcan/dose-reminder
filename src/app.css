@@ -4,8 +4,34 @@
 
 @layer base {
     @font-face {
-        font-family: 'MyFont';
+        font-family: 'Apis';
+        src: url('/fonts/Apis-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Apis';
         src: url('/fonts/Apis-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Apis';
+        src: url('/fonts/Apis-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Apis';
+        src: url('/fonts/Apis-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Apis';
+        src: url('/fonts/Apis-ExtraBold.ttf') format('truetype');
+        font-weight: 800;
+        font-style: normal;
     }
 
     html {
@@ -13,6 +39,6 @@
     }
 
     .btn-primary{
-        @apply text-base text-white bg-blue-800 rounded-full h-14 px-6 flex items-center justify-between;
+        @apply text-base text-white font-light bg-blue-800 rounded-full h-14 px-6 flex items-center justify-between;
     }
 }
