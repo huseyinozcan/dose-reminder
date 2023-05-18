@@ -2,6 +2,6 @@
 	import '../app.css';
 </script>
 
-<main class="container max-w-xs mx-auto h-screen flex flex-col items-center justify-center">
+<div class="max-w-xl mx-auto shadow h-screen flex flex-col items-center">
 	<slot />
-</main>
+</div>

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'MyFont';
+        src: url('/fonts/Apis-Regular.ttf') format('truetype');
+    }
+
+    html {
+        font-family: Apis, system-ui, sans-serif;
+    }
+
+    .btn-primary{
+        @apply text-base text-white bg-blue-800 rounded-full h-14 px-6 flex items-center justify-between;
+    }
+}
