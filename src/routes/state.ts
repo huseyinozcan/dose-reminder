@@ -1,4 +1,6 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
+import { createEvent, type EventAttributes, type Alarm } from 'ics';
+import { nextDay, type Day as DayIndex } from 'date-fns';
 
 export enum Page {
 	DOSE_SELECTION = 'DOSE_SELECTION',
@@ -71,5 +73,61 @@ export const store = {
 	},
 	setDose: (dose: Dose | string) => {
 		mutateState({ dose: dose as Dose });
+	},
+	downloadISCFile: async () => {
+		// TODO: report event to Google Analytics
+		const state = get(_store);
+		const now = new Date();
+		const year = now.getFullYear();
+		const month = now.getMonth() + 1;
+		const dayIndex = Object.values(Day).indexOf(state.day) as DayIndex;
+		const day = nextDay(now, dayIndex).getDate() + 1;
+		let hour = state.hour + (state.isAM ? 0 : 12);
+		if (hour === 24) {
+			hour = 0;
+		}
+		const minute = state.minute;
+		const alarms: Alarm[] = state.shouldNotifyDayBefore
+			? [
+					{
+						action: 'display',
+						trigger: { hours: 24, minutes: 0, before: true },
+						description: `Remember, tomorrow is the day to take your SogroyaⓇ weekly dose`
+					}
+			  ]
+			: [];
+		const event: EventAttributes = {
+			start: [year, month, day, hour, minute],
+			duration: { hours: 0, minutes: 10 },
+			title: `It's time to take your SogroyaⓇ weekly dose`,
+			description: `Take ${DoseDetails[state.dose].label} of SogroyaⓇ`,
+			url: 'https://sogroyadosereminder.com',
+			categories: ['healthcare'],
+			status: 'CONFIRMED',
+			busyStatus: 'BUSY',
+			recurrenceRule: `FREQ=WEEKLY;COUNT=52`,
+			alarms
+		};
+		const filename = 'dose-reminder.ics';
+		const file: File = await new Promise((resolve, reject) => {
+			createEvent(event, (error, value) => {
+				if (error) {
+					reject(error);
+				}
+
+				resolve(new File([value], filename, { type: 'plain/text' }));
+			});
+		});
+		const url = URL.createObjectURL(file);
+
+		const anchor = document.createElement('a');
+		anchor.href = url;
+		anchor.download = filename;
+
+		document.body.appendChild(anchor);
+		anchor.click();
+		document.body.removeChild(anchor);
+
+		URL.revokeObjectURL(url);
 	}
 };
