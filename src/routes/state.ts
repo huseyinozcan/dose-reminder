@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store';
 import { createEvent, type EventAttributes, type Alarm } from 'ics';
-import { nextDay, type Day as DayIndex } from 'date-fns';
+import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
 
 export enum Page {
 	DOSE_SELECTION = 'DOSE_SELECTION',
@@ -81,12 +81,15 @@ export const store = {
 		const year = now.getFullYear();
 		const month = now.getMonth() + 1;
 		const dayIndex = Object.values(Day).indexOf(state.day) as DayIndex;
-		const day = nextDay(now, dayIndex).getDate() + 1;
+		const twoDaysAgo = subDays(now, 2);
+		const day = nextDay(twoDaysAgo, dayIndex).getDate() + 1;
 		let hour = state.hour + (state.isAM ? 0 : 12);
 		if (hour === 24) {
 			hour = 0;
 		}
 		const minute = state.minute;
+
+		console.log({ year, month, day, hour, minute, dayIndex, stateDay: state.day });
 		const alarms: Alarm[] = state.shouldNotifyDayBefore
 			? [
 					{
