@@ -1,5 +1,5 @@
 import { get, writable } from 'svelte/store';
-import { createEvent, type EventAttributes, type Alarm } from 'ics';
+import { createEvents, type EventAttributes, type Alarm } from 'ics';
 import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
 
 export enum Page {
@@ -78,42 +78,75 @@ export const store = {
 		// TODO: report event to Google Analytics
 		const state = get(_store);
 		const now = new Date();
-		const year = now.getFullYear();
-		const month = now.getMonth() + 1;
 		const dayIndex = Object.values(Day).indexOf(state.day) as DayIndex;
 		const twoDaysAgo = subDays(now, 2);
-		const day = nextDay(twoDaysAgo, dayIndex).getDate() + 1;
+		interface Notification {
+			date: Date;
+			title: string;
+			description: string;
+			day: number;
+			month: number;
+			year: number;
+		}
+		const mainNotificationDate = nextDay(twoDaysAgo, dayIndex);
+		const mainNotification: Notification = {
+			date: mainNotificationDate,
+			title: `It's time to take your SogroyaⓇ weekly dose`,
+			description: `Take ${DoseDetails[state.dose].label} of SogroyaⓇ`,
+			day: mainNotificationDate.getDate() + 1,
+			month: mainNotificationDate.getMonth() + 1,
+			year: mainNotificationDate.getFullYear()
+		};
+		const dayBeforeNotificationDate = subDays(mainNotificationDate, 1);
+		const dayBeforeNotification: Notification = {
+			date: dayBeforeNotificationDate,
+			title: `Remember, tomorrow is the day to take your SogroyaⓇ weekly dose`,
+			description: `Prepare ${DoseDetails[state.dose].label} of SogroyaⓇ for tomorrow`,
+			day: dayBeforeNotificationDate.getDate() + 1,
+			month: dayBeforeNotificationDate.getMonth() + 1,
+			year: dayBeforeNotificationDate.getFullYear()
+		};
 		let hour = state.hour + (state.isAM ? 0 : 12);
 		if (hour === 24) {
 			hour = 0;
 		}
 		const minute = state.minute;
 
-		console.log({ year, month, day, hour, minute, dayIndex, stateDay: state.day });
-		const alarms: Alarm[] = state.shouldNotifyDayBefore
-			? [
-					{
-						action: 'display',
-						trigger: { hours: 24, minutes: 0, before: true },
-						description: `Remember, tomorrow is the day to take your SogroyaⓇ weekly dose`
-					}
-			  ]
-			: [];
-		const event: EventAttributes = {
-			start: [year, month, day, hour, minute],
-			duration: { hours: 0, minutes: 10 },
-			title: `It's time to take your SogroyaⓇ weekly dose`,
-			description: `Take ${DoseDetails[state.dose].label} of SogroyaⓇ`,
-			url: 'https://sogroyadosereminder.com',
-			categories: ['healthcare'],
-			status: 'CONFIRMED',
-			busyStatus: 'BUSY',
-			recurrenceRule: `FREQ=WEEKLY;COUNT=52`,
-			alarms
-		};
+		const events: EventAttributes[] = [
+			{
+				start: [
+					dayBeforeNotification.year,
+					dayBeforeNotification.month,
+					dayBeforeNotification.day,
+					hour,
+					minute
+				],
+				duration: { hours: 0, minutes: 10 },
+				title: dayBeforeNotification.title,
+				description: dayBeforeNotification.description,
+				url: 'https://sogroyadosereminder.com',
+				categories: ['healthcare'],
+				status: 'CONFIRMED',
+				busyStatus: 'BUSY',
+				recurrenceRule: `FREQ=WEEKLY;COUNT=52`
+			},
+			{
+				start: [mainNotification.year, mainNotification.month, mainNotification.day, hour, minute],
+				duration: { hours: 0, minutes: 10 },
+				title: mainNotification.title,
+				description: mainNotification.description,
+				url: 'https://sogroyadosereminder.com',
+				categories: ['healthcare'],
+				status: 'CONFIRMED',
+				busyStatus: 'BUSY',
+				recurrenceRule: `FREQ=WEEKLY;COUNT=52`
+			}
+		];
+
+		console.log({ mainNotification, dayBeforeNotification });
 		const filename = 'dose-reminder.ics';
 		const file: File = await new Promise((resolve, reject) => {
-			createEvent(event, (error, value) => {
+			createEvents(events, (error, value) => {
 				if (error) {
 					reject(error);
 				}
