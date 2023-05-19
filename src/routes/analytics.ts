@@ -17,9 +17,9 @@ export function reportPageNavigationToGA(currentPage: Page, nextPage: Page): voi
 	if (!event) {
 		return console.error(`No event found for page navigation from ${currentPage} to ${nextPage}`);
 	}
-	gtag('event', event);
+	window.gtag('event', event);
 }
 
 export function reportEvent(event: string): void {
-	gtag('event', event);
+	window.gtag('event', event);
 }
