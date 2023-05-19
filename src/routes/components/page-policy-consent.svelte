@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { store, Page, DoseDetails } from '../state';
+	import { store, Page } from '../state';
 	import Header from './header.svelte';
 	import Steps from './steps.svelte';
 

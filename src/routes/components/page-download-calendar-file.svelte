@@ -4,31 +4,45 @@
 	import Header from './header.svelte';
 </script>
 
-<header class="w-full bg-gray-100 p-9">
+<header class="w-full bg-gray-100 p-9 pb-0">
 	<Header />
 
 	<div class="mb-8">
 		<Steps stepIndex={3} />
 	</div>
 
-	<div class="text-center pb-3">
-		<h1 class="h1 mb-4">Welcome!</h1>
-		<p>
-			<span class="inline-block">To get started let's make sure what</span>
-			<span class="inline-block">
-				<span class="font-bold">SogroyaⓇ</span>
-				pen you have in front of you.
-			</span>
-		</p>
+	<div class="text-center">
+		<img src="/img/image-step-4.png" width="682" height="397" alt="privacy policy consent" />
 	</div>
 </header>
 
-<main>
-	<h1 class="text-2xl font-bold mb-10">Page 4 (download calendar file)</h1>
+<main class="flex-1 flex flex-col w-full pb-6 px-[1.875rem] bg-white">
+	<div class="flex-1 flex flex-col items-center text-center gap-y-6 pt-12">
+		<h1 class="h1">Download Reminders</h1>
+
+		<p class="text-sm leading-relaxed max-w-[17rem]">
+			Your Reminder is ready to be downloaded into your device. Please press the download button
+			below to continue to your calender.
+		</p>
+	</div>
 	<div class="flex gap-3">
-		<button class="btn btn-secondary" on:click={() => store.setPage(Page.DATE_TIME_SELECTION)}>
-			Back
+		<button class="grow btn btn-secondary" on:click={() => store.setPage(Page.DATE_TIME_SELECTION)}>
+			<svg
+				class="text-indigo-950"
+				width="18"
+				height="8"
+				viewBox="0 0 18 8"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M0.646446 3.64645C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.97631 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64645ZM18 3.5L1 3.5L1 4.5L18 4.5L18 3.5Z"
+					fill="#001965"
+				/>
+			</svg>
 		</button>
-		<button class="btn btn-primary" on:click={store.downloadISCFile}>Download to calendar</button>
+		<button class="grow btn btn-primary" on:click={store.downloadISCFile}
+			>Download to calendar</button
+		>
 	</div>
 </main>
