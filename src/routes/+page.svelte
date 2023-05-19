@@ -5,7 +5,8 @@
 		PagePolicyConsent,
 		PageDownloadCalendarFile
 	} from './components';
-	import { store, Page } from './state';
+	import { store } from './state';
+	import { Page } from './types';
 </script>
 
 {#if Page.DOSE_SELECTION === $store.page}

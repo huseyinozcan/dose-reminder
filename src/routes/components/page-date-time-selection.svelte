@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { store, Page, Day } from '../state';
+	import { store } from '../state';
 	import Steps from './steps.svelte';
 	import Header from './header.svelte';
+	import { Day, Page } from '../types';
 
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();

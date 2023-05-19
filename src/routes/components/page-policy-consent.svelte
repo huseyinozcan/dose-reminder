@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { store, Page } from '../state';
+	import { store } from '../state';
 	import Header from './header.svelte';
 	import Steps from './steps.svelte';
+	import { Page } from '../types';
 
 	let consent = true;
 </script>

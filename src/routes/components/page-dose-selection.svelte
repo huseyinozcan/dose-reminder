@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { store, Page, DoseDetails } from '../state';
+	import { store } from '../state';
 	import Header from './header.svelte';
 	import Steps from './steps.svelte';
+	import { DoseDetails, Page } from '../types';
 </script>
 
 <header class="w-full bg-gray-100 p-9">

@@ -1,44 +1,8 @@
 import { get, writable } from 'svelte/store';
-import { createEvents, type EventAttributes, type Alarm } from 'ics';
+import { createEvents, type EventAttributes } from 'ics';
 import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
-
-export enum Page {
-	DOSE_SELECTION = 'DOSE_SELECTION',
-	PRIVACY_POLICY_CONSENT = 'PRIVACY_POLICY_CONSENT',
-	DATE_TIME_SELECTION = 'DATE_TIME_SELECTION',
-	DOWNLOAD_CALENDAR_FILE = 'DOWNLOAD_CALENDAR_FILE'
-}
-
-export enum Dose {
-	D_5_MG = 'D_5_MG',
-	D_10_MG = 'D_10_MG',
-	D_15_MG = 'D_15_MG'
-}
-
-export const DoseDetails = {
-	[Dose.D_5_MG]: {
-		label: '5 mg',
-		imageURL: '/img/dose-5mg.png'
-	},
-	[Dose.D_10_MG]: {
-		label: '10 mg',
-		imageURL: '/img/dose-10mg.png'
-	},
-	[Dose.D_15_MG]: {
-		label: '15 mg',
-		imageURL: '/img/dose-15mg.png'
-	}
-};
-
-export enum Day {
-	MONDAY = 'MONDAY',
-	TUESDAY = 'TUESDAY',
-	WEDNESDAY = 'WEDNESDAY',
-	THURSDAY = 'THURSDAY',
-	FRIDAY = 'FRIDAY',
-	SATURDAY = 'SATURDAY',
-	SUNDAY = 'SUNDAY'
-}
+import { reportEvent, reportPageNavigationToGA } from './analytics';
+import { Dose, Page, Day, DoseDetails } from './types';
 
 interface State {
 	page: Page;
@@ -68,14 +32,16 @@ function mutateState(mutation: Partial<State>) {
 export const store = {
 	..._store,
 	setPage: (page: Page) => {
-		// TODO: report event to Google Analytics
+		reportPageNavigationToGA(get(store).page, page);
 		mutateState({ page });
 	},
 	setDose: (dose: Dose | string) => {
 		mutateState({ dose: dose as Dose });
 	},
 	downloadISCFile: async () => {
-		// TODO: report event to Google Analytics
+		reportEvent('calendar_file_downloaded');
+		// TODO: refactor mess below
+		// ICS file generation API: https://github.com/adamgibbons/ics#api
 		const state = get(_store);
 		const now = new Date();
 		const dayIndex = Object.values(Day).indexOf(state.day) as DayIndex;
