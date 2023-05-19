@@ -38,7 +38,23 @@
         font-family: Apis, system-ui, sans-serif;
     }
 
+    body{
+        @apply text-blue-950;
+    }
+
+    .btn{
+        @apply text-base font-normal rounded-full h-14 px-6 flex items-center justify-center;
+    }
+
     .btn-primary{
-        @apply text-base text-white font-light bg-blue-800 rounded-full h-14 px-6 flex items-center justify-between;
+        @apply text-white bg-blue-800;
+    }
+
+    .btn-secondary{
+        @apply text-blue-950 bg-gray-200;
+    }
+
+    .h1{
+        @apply text-2xl font-bold;
     }
 }
