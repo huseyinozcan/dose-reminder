@@ -1,11 +1,31 @@
 <script lang="ts">
 	import { store, Page, Day } from '../state';
+	import Steps from './steps.svelte';
+	import Header from './header.svelte';
 
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
 </script>
 
+<header class="w-full bg-gray-100 p-9">
+	<Header />
+
+	<div class="mb-8">
+		<Steps stepIndex={2} />
+	</div>
+
+	<div class="text-center pb-3">
+		<h1 class="h1 mb-4">Welcome!</h1>
+		<p>
+			<span class="inline-block">To get started let's make sure what</span>
+			<span class="inline-block">
+				<span class="font-bold">SogroyaⓇ</span>
+				pen you have in front of you.
+			</span>
+		</p>
+	</div>
+</header>
 <h1 class="text-2xl font-bold mb-10">Page 3 (date time selection)</h1>
 
 <div class="flex flex-col gap-5">
