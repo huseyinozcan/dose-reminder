@@ -32,7 +32,7 @@
 		</p>
 	</div>
 	<div>
-		<label for="custom-checkbox" class="flex cursor-pointer mb-5">
+		<label for="custom-checkbox" class="flex cursor-pointer ml-4 mb-5">
 			<span class="bg-teal-600 flex items-center justify-center w-5 h-5 rounded-full">
 				<input
 					bind:checked={consent}

@@ -73,7 +73,7 @@
 				{/if}
 
 				{#if stepIndex < step}
-					<li class="relative pr-10 sm:pr-20">
+					<li class="relative pr-10 sm:pr-20 last:pr-0">
 						<!-- Upcoming Step -->
 						{#if step !== totalSteps - 1}
 							<div class="absolute inset-0 flex items-center" aria-hidden="true">
