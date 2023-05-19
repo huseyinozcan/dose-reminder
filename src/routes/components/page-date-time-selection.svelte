@@ -18,7 +18,7 @@
 </header>
 
 <main class="flex-1 flex flex-col w-full pb-6 px-[1.875rem] bg-white">
-	<div class="flex-1 flex flex-col pt-8 items-center text-center gap-y-6">
+	<div class="flex-1 flex flex-col pt-8 items-center text-center">
 		<div class="text-center pb-3">
 			<h1 class="h1 mb-4">Which Day?</h1>
 			<p class="text-sm text-gray-400">
@@ -33,7 +33,7 @@
 			{/each}
 		</select>
 
-		<div class="text-center pb-3">
+		<div class="text-center mt-8 pb-3">
 			<h1 class="h1 mb-4">Which Time?</h1>
 			<p class="text-sm text-gray-400">
 				<span class="inline-block">Please select a time for a daily</span><br />
@@ -42,28 +42,38 @@
 		</div>
 
 		<!-- AM/PM checkbox -->
-		<!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-		<button
-			type="button"
-			class="bg-gray-400 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
-			role="switch"
-			aria-checked="false"
-		>
-			<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+		<div class="flex items-center gap-2 mb-4">
 			<span
-				aria-hidden="true"
-				class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-			/>
-		</button>
+				on:click={($store.isAM = true)}
+				class={`cursor-pointer text-sm font-bold ${
+					$store.isAM === true ? 'text-teal-600' : 'text-gray-400'
+				}`}>AM</span
+			>
 
-		<label class="flex gap-2">
-			<input type="checkbox" bind:checked={$store.isAM} class="w-6 h-6" />
-			<div>
-				<p>Is AM?</p>
-			</div>
-		</label>
+			<button
+				type="button"
+				class="bg-teal-600 relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-0"
+				role="switch"
+				aria-checked="false"
+				on:click={() => ($store.isAM = !$store.isAM)}
+			>
+				<span
+					aria-hidden="true"
+					class={`translate-x-0 pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+						$store.isAM === true ? 'translate-x-0' : 'translate-x-6'
+					}`}
+				/>
+			</button>
 
-		<div class="flex flex gap-6">
+			<span
+				on:click={($store.isAM = false)}
+				class={`cursor-pointer text-sm font-bold ${
+					$store.isAM !== true ? 'text-teal-600' : 'text-gray-400'
+				}`}>PM</span
+			>
+		</div>
+
+		<div class="flex gap-6">
 			<!-- Hour selector -->
 			<h3>Hour:</h3>
 			<select bind:value={$store.hour}>
@@ -84,7 +94,7 @@
 
 	<div>
 		<!-- shouldNotifyDayBefore checkbox -->
-		<label for="custom-checkbox" class="flex cursor-pointer ml-4 mb-5">
+		<label for="custom-checkbox" class="flex items-center cursor-pointer ml-4 mb-5">
 			<span class="bg-teal-600 flex items-center justify-center w-5 h-5 rounded-full">
 				<input
 					bind:checked={$store.shouldNotifyDayBefore}
@@ -108,7 +118,7 @@
 					</svg>
 				</span>
 			</span>
-			<span class="ml-3 text-xs leading-4">I would like to be informed the day before </span>
+			<span class="ml-3 text-xs">I would like to be informed the day before </span>
 		</label>
 		<div class="flex gap-3">
 			<button
