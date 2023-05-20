@@ -13,13 +13,15 @@
 				<slot name="header" />
 			</header>
 
-			<main class="flex-1 flex flex-col w-full max-w-sm pb-6 px-[1.875rem] lg:px-0 bg-white">
-				<slot />
+			<main class="flex-1 flex flex-col w-full pb-6 px-[1.875rem] lg:px-0 bg-white">
+				<div class="flex-1 flex flex-col mx-auto w-full max-w-sm">
+					<slot />
+				</div>
 			</main>
 		</div>
 	</div>
 
-	<div class="flex flex-col justify-center lg:px-10 xl:px-24 overflow-hidden">
+	<div class="hidden lg:flex flex-col justify-center lg:px-10 xl:px-24 overflow-hidden">
 		<slot name="desktop-image" />
 	</div>
 </section>

@@ -33,11 +33,13 @@
 				</p>
 			</div>
 			<!-- Day selector -->
-			<select bind:value={$store.day}>
-				{#each Object.keys(Day) as day}
-					<option value={day}>{capitalize($i18n.text.dateTimeSelection.day(day))}</option>
-				{/each}
-			</select>
+			<div class="bg-gray-100 rounded-xl p-9 w-full">
+				<select bind:value={$store.day} class="block w-full sm:max-w-xs">
+					{#each Object.keys(Day) as day}
+						<option value={day}>{capitalize($i18n.text.dateTimeSelection.day(day))}</option>
+					{/each}
+				</select>
+			</div>
 
 			<div class="text-center mt-8 pb-3">
 				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.timeTitle}</h1>
@@ -79,7 +81,7 @@
 				>
 			</div>
 
-			<div class="flex gap-6">
+			<div class="bg-gray-100 rounded-xl p-9 w-full flex items-center gap-5">
 				<!-- Hour selector -->
 				<h3>{$i18n.text.dateTimeSelection.hour}</h3>
 				<select bind:value={$store.hour}>
