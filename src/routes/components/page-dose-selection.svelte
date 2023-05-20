@@ -31,20 +31,24 @@
 	</slot>
 
 	<slot>
-		<div data-e2e="doses" class="flex-1 flex flex-col justify-center gap-5">
+		<div
+			data-e2e="doses"
+			class="flex-1 flex flex-col justify-center gap-5 -mx-[1.875rem] px-[1.875rem] overflow-hidden"
+		>
 			{#each Object.entries(DoseDetails) as [key, value]}
 				<button
 					on:click={() => store.setDose(key)}
 					class={`h-20 px-6 rounded-full relative text-left
-				${key === $store.dose ? 'bg-amber-500 text-white' : 'bg-gray-100 text-blue-950'}`}
+				${key === $store.dose ? 'bg-amber-500 text-white font-bold' : 'bg-gray-100 text-blue-950'}`}
 				>
 					{value.label}
 					<img
-						class="absolute -right-[1.875rem] lg:right-auto lg:left-16 z-10 -top-5"
-						src={value.imageURL}
-						alt={value.label}
+						class="absolute shrink-0 grow w-full left-[4.25rem] -top-[1.25rem] z-10"
+						style="width: 380px; height:125px;"
 						width="380"
 						height="125"
+						src={value.imageURL}
+						alt={value.label}
 					/>
 				</button>
 			{/each}
