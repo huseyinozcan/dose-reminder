@@ -24,10 +24,12 @@
 	</slot>
 
 	<slot>
-		<div class="flex-1 flex flex-col items-center text-center gap-y-6 pt-12">
-			<h1 class="h1">{$i18n.text.downloadCalendarFile.title}</h1>
+		<div
+			class="flex-1 flex flex-col items-center lg:justify-center text-center gap-y-6 pt-12 lg:pt-0"
+		>
+			<h1 class="h1 lg:-mt-20">{$i18n.text.downloadCalendarFile.title}</h1>
 
-			<p class="text-sm leading-relaxed max-w-[17rem]">
+			<p class="leading-relaxed max-w-[17rem] lg:max-w-xs">
 				{$i18n.text.downloadCalendarFile.description}
 			</p>
 		</div>

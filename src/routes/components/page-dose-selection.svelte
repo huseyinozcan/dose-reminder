@@ -14,13 +14,13 @@
 
 <PageLayout>
 	<slot slot="header">
-		<div class="mb-8">
+		<div class="mb-8 lg:mb-20">
 			<Steps stepIndex={0} />
 		</div>
 
-		<div class="text-center pb-3 lg:max-w-xs lg:mx-auto">
-			<h1 class="h1 mb-4">{$i18n.text.doseSelection.title}</h1>
-			<p>
+		<div class="text-center pb-3 lg:max-w-sm lg:mx-auto">
+			<h1 class="h1 mb-4 lg:mb-8">{$i18n.text.doseSelection.title}</h1>
+			<p class="text-base lg:text-lg">
 				<span class="inline-block">{$i18n.text.doseSelection.description1}</span>
 				<span class="inline-block">
 					<span class="font-bold">{$i18n.text.productName}</span>
@@ -40,9 +40,11 @@
 				>
 					{value.label}
 					<img
-						class="absolute -right-[1.875rem] z-10 -top-5"
+						class="absolute -right-[1.875rem] lg:right-auto lg:left-16 z-10 -top-5"
 						src={value.imageURL}
 						alt={value.label}
+						width="380"
+						height="125"
 					/>
 				</button>
 			{/each}
@@ -66,7 +68,7 @@
 	</slot>
 
 	<slot slot="desktop-image">
-		<div class="relative w-full h-96">
+		<div class="relative w-full h-72">
 			<img
 				class="mx-auto z-10 animate-pulse"
 				src="/img/hand.svg"

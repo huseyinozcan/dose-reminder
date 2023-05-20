@@ -15,17 +15,17 @@
 						{#if step + 1 === stepIndex}
 							<div class="absolute inset-0 flex items-center" aria-hidden="true">
 								<div
-									class="h-0.5 w-full bg-gradient-to-r from-teal-600 via-teal-600 to-indigo-950"
+									class="h-0.5 lg:h-1 w-full bg-gradient-to-r from-teal-600 via-teal-600 to-indigo-950"
 								/>
 							</div>
 						{:else}
 							<div class="absolute inset-0 flex items-center" aria-hidden="true">
-								<div class="h-0.5 w-full bg-teal-600" />
+								<div class="h-0.5 lg:h-1 w-full bg-teal-600" />
 							</div>
 						{/if}
 						<a
 							href="/"
-							class="relative flex h-8 w-8 items-center justify-center rounded-full bg-teal-600 hover:bg-teal-500"
+							class="relative flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-teal-600 hover:bg-teal-500"
 						>
 							<svg
 								class="h-4 text-white"
@@ -52,20 +52,23 @@
 						{#if step !== totalSteps - 1}
 							<div class="absolute inset-0 flex items-center" aria-hidden="true">
 								<div
-									class="h-0.5 w-full bg-gradient-to-r from-indigo-950 via-indigo-950 to-gray-300"
+									class="h-0.5 lg:h-1 w-full bg-gradient-to-r from-indigo-950 via-indigo-950 to-gray-300"
 								/>
 							</div>
 						{/if}
 						<a
 							href="/"
-							class="relative flex h-8 w-8 items-center justify-center rounded-full bg-indigo-950"
+							class="relative flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-indigo-950"
 							aria-current="step"
 						>
 							<span
-								class="flex items-center justify-center border border-white h-4 w-4 rounded-full bg-indigo-950 relative z-0"
+								class="flex items-center justify-center border-2 border-white h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-indigo-950 relative z-0"
 								aria-hidden="true"
 							>
-								<span class="h-1 w-1 rounded-full bg-white relative z-10" aria-hidden="true" />
+								<span
+									class="h-1 w-1 lg:h-1.5 lg:w-1.5 rounded-full bg-white relative z-10"
+									aria-hidden="true"
+								/>
 							</span>
 							<span class="sr-only">Step 2</span>
 						</a>
@@ -77,15 +80,15 @@
 						<!-- Upcoming Step -->
 						{#if step !== totalSteps - 1}
 							<div class="absolute inset-0 flex items-center" aria-hidden="true">
-								<div class="h-0.5 w-full bg-gray-300" />
+								<div class="h-0.5 lg:h-1 w-full bg-gray-300" />
 							</div>
 						{/if}
 						<a
 							href="/"
-							class="group relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-gray-300"
+							class="group relative flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-gray-300"
 						>
 							<span
-								class="h-1 w-1 rounded-full bg-white group-hover:bg-gray-300"
+								class="h-1 w-1 lg:h-1.5 lg:w-1.5 rounded-full bg-white group-hover:bg-gray-300"
 								aria-hidden="true"
 							/>
 							<span class="sr-only">Step 3</span>

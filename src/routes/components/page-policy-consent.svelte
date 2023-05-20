@@ -26,15 +26,15 @@
 	</slot>
 
 	<slot>
-		<div class="flex-1 flex flex-col justify-center items-center text-center gap-y-6">
+		<div class="flex-1 flex flex-col justify-center items-center text-center gap-y-6 lg:-mt-4">
 			<h1 class="h1">{$i18n.text.policyConsent.title}</h1>
 
-			<p class="text-sm leading-relaxed max-w-xs">
+			<p class="leading-relaxed max-w-xs">
 				{$i18n.text.policyConsent.description1}
 				<span class="font-bold">{$i18n.text.productName}</span>, {$i18n.text.policyConsent
 					.description2}
 			</p>
-			<p class="text-sm leading-relaxed">
+			<p class="leading-relaxed">
 				{$i18n.text.policyConsent.description3}
 			</p>
 		</div>
@@ -63,7 +63,7 @@
 						</svg>
 					</span>
 				</span>
-				<span class="ml-3 text-xs leading-4">
+				<span class="ml-3 text-xs lg:text-sm leading-4">
 					<span class="block">{$i18n.text.policyConsent.consentCheckbox1}</span>
 					<span class="block"
 						>{$i18n.text.policyConsent.consentCheckbox2}

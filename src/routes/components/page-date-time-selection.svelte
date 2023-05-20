@@ -27,7 +27,7 @@
 		<div class="flex-1 flex flex-col pt-8 items-center text-center">
 			<div class="text-center pb-3">
 				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.dayTitle}</h1>
-				<p class="text-sm text-gray-400">
+				<p class="text-gray-400">
 					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription1}</span><br />
 					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription2}</span>
 				</p>
@@ -43,7 +43,7 @@
 
 			<div class="text-center mt-8 pb-3">
 				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.timeTitle}</h1>
-				<p class="text-sm text-gray-400">
+				<p class="text-gray-400">
 					<span class="inline-block">{$i18n.text.dateTimeSelection.timeDescription1}</span><br />
 					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription2}</span>
 				</p>

@@ -48,9 +48,12 @@
         background-position: right 0.5rem center;
         background-size: 1.5em 1.5em;
     }
+    p{
+        @apply text-base lg:text-lg;
+    }
 
     .btn{
-        @apply text-base font-normal rounded-full h-14 px-6 flex items-center justify-center;
+        @apply text-sm lg:text-lg font-normal rounded-full h-14 lg:h-16 px-6 flex items-center justify-center;
     }
 
     .btn-primary{
@@ -62,7 +65,7 @@
     }
 
     .h1{
-        @apply text-2xl font-bold;
+        @apply text-2xl lg:text-3xl font-bold;
     }
 }
 
