@@ -5,14 +5,12 @@
 	import { DoseDetails, Page } from '../types';
 </script>
 
-<header class="w-full bg-gray-100 p-9">
-	<Header />
-
+<slot name="header">
 	<div class="mb-8">
 		<Steps stepIndex={0} />
 	</div>
 
-	<div class="text-center pb-3">
+	<div class="text-center pb-3 lg:max-w-xs lg:mx-auto">
 		<h1 class="h1 mb-4">Welcome!</h1>
 		<p>
 			<span class="inline-block">To get started let's make sure what</span>
@@ -22,9 +20,9 @@
 			</span>
 		</p>
 	</div>
-</header>
+</slot>
 
-<main class="flex-1 flex flex-col w-full pb-6 px-[1.875rem] bg-white">
+<slot>
 	<div data-e2e="doses" class="flex-1 flex flex-col justify-center gap-5">
 		{#each Object.entries(DoseDetails) as [key, value]}
 			<button
@@ -57,4 +55,8 @@
 			<path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 		</svg>
 	</button>
-</main>
+</slot>
+
+<slot name="desktop-image">
+	<img src="/img/desktop-step-1.png" width="1277" height="843" alt="" />
+</slot>

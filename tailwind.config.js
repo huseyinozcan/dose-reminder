@@ -10,8 +10,8 @@ export default {
 				'teal-600': '#1CBCC3',
 				'blue-800': '#005AD2',
 				'blue-950': '#001965',
-				'indigo-950': '#292C4D',
-				'amber-500': '#F5C84E'
+				'amber-500': '#F5C84E',
+				'indigo-950': '#292C4D'
 			}
 		}
 	},
