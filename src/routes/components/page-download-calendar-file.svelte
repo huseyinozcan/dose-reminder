@@ -4,6 +4,12 @@
 	import { Page } from '../types';
 	import PageLayout from './page-layout.svelte';
 	import { i18n } from '../i18n/store';
+
+	let clouds = [
+		{ id: 1, x: 92, y: 32 },
+		{ id: 2, x: 0, y: 84 },
+		{ id: 3, x: 80, y: 192 }
+	];
 </script>
 
 <PageLayout>
@@ -51,6 +57,22 @@
 	</slot>
 
 	<slot slot="desktop-image">
-		<img src="/img/image-step-2.png" width="682" height="290" alt="privacy policy consent" />
+		<div class="relative w-full h-96">
+			<img
+				class="mx-auto z-10 animate-pulse"
+				src="/img/laptop.svg"
+				alt="Laptop"
+				width="500"
+				height="291"
+			/>
+			{#each clouds as cloud}
+				<img
+					class="absolute z-20 animate-cloud"
+					style="right: {cloud.x}%; top: {cloud.y}px;"
+					src="/img/cloud-{cloud.id}.svg"
+					alt="clouds"
+				/>
+			{/each}
+		</div>
 	</slot>
 </PageLayout>

@@ -158,7 +158,7 @@
 	<slot slot="desktop-image">
 		<div class="relative w-full h-96">
 			<img
-				class="mx-auto z-10 animate-calendar"
+				class="mx-auto z-10 animate-pulse"
 				src="/img/calendar.svg"
 				alt="Calendar"
 				width="340"
@@ -175,33 +175,3 @@
 		</div>
 	</slot>
 </PageLayout>
-
-<style>
-	.animate-calendar {
-		animation: pulse 5s infinite;
-	}
-	.animate-cloud {
-		animation: slide 25s linear infinite;
-	}
-
-	@keyframes pulse {
-		0% {
-			transform: translateY(-16px);
-		}
-		50% {
-			transform: translateY(16px);
-		}
-		100% {
-			transform: translateY(-16px);
-		}
-	}
-
-	@keyframes slide {
-		0% {
-			margin-right: -1000px;
-		}
-		100% {
-			margin-right: 100%;
-		}
-	}
-</style>

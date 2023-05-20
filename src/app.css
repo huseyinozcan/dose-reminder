@@ -58,3 +58,33 @@
         @apply text-2xl font-bold;
     }
 }
+
+@layer utilities {
+    .animate-pulse {
+        animation: pulse 5s infinite;
+    }
+    .animate-cloud {
+        animation: slide 25s linear infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: translateY(-16px);
+        }
+        50% {
+            transform: translateY(16px);
+        }
+        100% {
+            transform: translateY(-16px);
+        }
+    }
+
+    @keyframes slide {
+        0% {
+            margin-right: -768px;
+        }
+        100% {
+            margin-right: 100%;
+        }
+    }
+}
