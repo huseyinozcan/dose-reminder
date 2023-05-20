@@ -5,6 +5,12 @@
 	import PageLayout from './page-layout.svelte';
 	import { i18n } from '../i18n/store';
 
+	let clouds = [
+		{ id: 1, x: 92, y: 32 },
+		{ id: 2, x: 0, y: 84 },
+		{ id: 3, x: 80, y: 192 }
+	];
+
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
@@ -150,6 +156,52 @@
 	</slot>
 
 	<slot slot="desktop-image">
-		<img src="/img/image-step-2.png" width="682" height="290" alt="privacy policy consent" />
+		<div class="relative w-full h-96">
+			<img
+				class="mx-auto z-10 animate-calendar"
+				src="/img/calendar.svg"
+				alt="Calendar"
+				width="340"
+				height="303"
+			/>
+			{#each clouds as cloud}
+				<img
+					class="absolute z-20 animate-cloud"
+					style="right: {cloud.x}%; top: {cloud.y}px;"
+					src="/img/cloud-{cloud.id}.svg"
+					alt="clouds"
+				/>
+			{/each}
+		</div>
 	</slot>
 </PageLayout>
+
+<style>
+	.animate-calendar {
+		animation: pulse 5s infinite;
+	}
+	.animate-cloud {
+		animation: slide 25s linear infinite;
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: translateY(-16px);
+		}
+		50% {
+			transform: translateY(16px);
+		}
+		100% {
+			transform: translateY(-16px);
+		}
+	}
+
+	@keyframes slide {
+		0% {
+			margin-right: -1000px;
+		}
+		100% {
+			margin-right: 100%;
+		}
+	}
+</style>

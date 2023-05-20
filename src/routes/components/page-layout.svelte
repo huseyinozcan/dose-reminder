@@ -19,7 +19,7 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col justify-center lg:px-10 xl:px-24">
+	<div class="flex flex-col justify-center lg:px-10 xl:px-24 overflow-hidden">
 		<slot name="desktop-image" />
 	</div>
 </section>

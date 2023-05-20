@@ -96,6 +96,6 @@
 	</slot>
 
 	<slot slot="desktop-image">
-		<img src="/img/image-step-2.png" width="682" height="290" alt="privacy policy consent" />
+		<img src="/img/desktop-step-2.png" width="1216" height="711" alt="privacy policy consent" />
 	</slot>
 </PageLayout>
