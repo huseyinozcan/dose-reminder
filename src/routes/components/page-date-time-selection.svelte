@@ -3,6 +3,7 @@
 	import Steps from './steps.svelte';
 	import { Day, Page } from '../types';
 	import PageLayout from './page-layout.svelte';
+	import { i18n } from '../i18n/store';
 
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -19,31 +20,31 @@
 	<slot>
 		<div class="flex-1 flex flex-col pt-8 items-center text-center">
 			<div class="text-center pb-3">
-				<h1 class="h1 mb-4">Which Day?</h1>
+				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.dayTitle}</h1>
 				<p class="text-sm text-gray-400">
-					<span class="inline-block">Please select a day for your once</span><br />
-					<span class="inline-block">weekly dose reminder</span>
+					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription1}</span><br />
+					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription2}</span>
 				</p>
 			</div>
 			<!-- Day selector -->
 			<select bind:value={$store.day}>
 				{#each Object.keys(Day) as day}
-					<option value={day}>{capitalize(day)}</option>
+					<option value={day}>{capitalize($i18n.text.dateTimeSelection.day(day))}</option>
 				{/each}
 			</select>
 
 			<div class="text-center mt-8 pb-3">
-				<h1 class="h1 mb-4">Which Time?</h1>
+				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.timeTitle}</h1>
 				<p class="text-sm text-gray-400">
-					<span class="inline-block">Please select a time for a daily</span><br />
-					<span class="inline-block">dose reminder</span>
+					<span class="inline-block">{$i18n.text.dateTimeSelection.timeDescription1}</span><br />
+					<span class="inline-block">{$i18n.text.dateTimeSelection.dayDescription2}</span>
 				</p>
 			</div>
 
 			<!-- AM/PM checkbox -->
 			<div class="flex items-center gap-2 mb-4">
 				<span
-					on:click={($store.isAM = true)}
+					on:click={() => ($store.isAM = true)}
 					class={`cursor-pointer text-sm font-bold ${
 						$store.isAM === true ? 'text-teal-600' : 'text-gray-400'
 					}`}>AM</span
@@ -65,7 +66,7 @@
 				</button>
 
 				<span
-					on:click={($store.isAM = false)}
+					on:click={() => ($store.isAM = false)}
 					class={`cursor-pointer text-sm font-bold ${
 						$store.isAM !== true ? 'text-teal-600' : 'text-gray-400'
 					}`}>PM</span
@@ -74,14 +75,14 @@
 
 			<div class="flex gap-6">
 				<!-- Hour selector -->
-				<h3>Hour:</h3>
+				<h3>{$i18n.text.dateTimeSelection.hour}</h3>
 				<select bind:value={$store.hour}>
 					{#each Array.from(Array(12).keys()) as hour}
 						<option value={hour + 1}>{hour + 1}</option>
 					{/each}
 				</select>
 
-				<h3>Minute:</h3>
+				<h3>{$i18n.text.dateTimeSelection.minute}</h3>
 				<!-- Minute selector -->
 				<select bind:value={$store.minute}>
 					{#each Array.from(Array(60).keys()) as minute}
@@ -117,7 +118,7 @@
 						</svg>
 					</span>
 				</span>
-				<span class="ml-3 text-xs">I would like to be informed the day before </span>
+				<span class="ml-3 text-xs">{$i18n.text.dateTimeSelection.dayBeforeCheckbox}</span>
 			</label>
 			<div class="flex gap-3">
 				<button
@@ -141,20 +142,9 @@
 				<button
 					class="grow btn btn-primary"
 					on:click={() => store.setPage(Page.DOWNLOAD_CALENDAR_FILE)}
-					><svg
-						class="text-white rotate-180"
-						width="18"
-						height="8"
-						viewBox="0 0 18 8"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M0.646446 3.64645C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.97631 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64645ZM18 3.5L1 3.5L1 4.5L18 4.5L18 3.5Z"
-							fill="currentColor"
-						/>
-					</svg></button
 				>
+					{$i18n.text.dateTimeSelection.proceedButton}
+				</button>
 			</div>
 		</div>
 	</slot>

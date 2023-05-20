@@ -3,6 +3,7 @@
 	import Steps from './steps.svelte';
 	import { Page } from '../types';
 	import PageLayout from './page-layout.svelte';
+	import { i18n } from '../i18n/store';
 </script>
 
 <PageLayout>
@@ -18,11 +19,10 @@
 
 	<slot>
 		<div class="flex-1 flex flex-col items-center text-center gap-y-6 pt-12">
-			<h1 class="h1">Download Reminders</h1>
+			<h1 class="h1">{$i18n.text.downloadCalendarFile.title}</h1>
 
 			<p class="text-sm leading-relaxed max-w-[17rem]">
-				Your Reminder is ready to be downloaded into your device. Please press the download button
-				below to continue to your calender.
+				{$i18n.text.downloadCalendarFile.description}
 			</p>
 		</div>
 		<div class="flex gap-3">
@@ -45,7 +45,7 @@
 				</svg>
 			</button>
 			<button class="grow btn btn-primary" on:click={store.downloadISCFile}
-				>Download to calendar</button
+				>{$i18n.text.downloadCalendarFile.proceedButton}</button
 			>
 		</div>
 	</slot>

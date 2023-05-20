@@ -3,6 +3,7 @@
 	import Steps from './steps.svelte';
 	import { Page } from '../types';
 	import PageLayout from './page-layout.svelte';
+	import { i18n } from '../i18n/store';
 
 	let consent = true;
 </script>
@@ -20,15 +21,15 @@
 
 	<slot>
 		<div class="flex-1 flex flex-col justify-center items-center text-center gap-y-6">
-			<h1 class="h1">Getting Started</h1>
+			<h1 class="h1">{$i18n.text.policyConsent.title}</h1>
 
 			<p class="text-sm leading-relaxed max-w-xs">
-				To help you get off to a good start with <span class="font-bold">SogroyaⓇ</span>, you can
-				choose to set up a weekly reminders directly in your calendar.
+				{$i18n.text.policyConsent.description1}
+				<span class="font-bold">{$i18n.text.productName}</span>, {$i18n.text.policyConsent
+					.description2}
 			</p>
 			<p class="text-sm leading-relaxed">
-				If you would like to set up a reminder, please check the box below to allow us to calculate
-				the necessary input.
+				{$i18n.text.policyConsent.description3}
 			</p>
 		</div>
 		<div>
@@ -57,20 +58,38 @@
 					</span>
 				</span>
 				<span class="ml-3 text-xs leading-4">
-					<span class="block">Yes I consent to use the calendar function.</span>
-					<span class="block">Read more about our <a href="/">Privacy policy</a>.</span>
+					<span class="block">{$i18n.text.policyConsent.consentCheckbox1}</span>
+					<span class="block"
+						>{$i18n.text.policyConsent.consentCheckbox2}
+						<a href="/privacy-policy/{$i18n.lang.toLowerCase()}" class="underline">
+							{$i18n.text.policyConsent.privacyPolicy}
+						</a>
+						.
+					</span>
 				</span>
 			</label>
 			<div class="flex gap-3">
-				<button class="grow btn btn-secondary" on:click={() => store.setPage(Page.DOSE_SELECTION)}
-					>Back</button
-				>
+				<button class="grow btn btn-secondary" on:click={() => store.setPage(Page.DOSE_SELECTION)}>
+					<svg
+						class="text-indigo-950"
+						width="18"
+						height="8"
+						viewBox="0 0 18 8"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M0.646446 3.64645C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.97631 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64645ZM18 3.5L1 3.5L1 4.5L18 4.5L18 3.5Z"
+							fill="currentColor"
+						/>
+					</svg>
+				</button>
 				<button
 					class="grow btn btn-primary"
 					disabled={!consent}
 					on:click={() => store.setPage(Page.DATE_TIME_SELECTION)}
 				>
-					Yes, set reminder
+					{$i18n.text.policyConsent.proceedButton}
 				</button>
 			</div>
 		</div>

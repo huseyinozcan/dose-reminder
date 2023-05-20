@@ -3,6 +3,7 @@
 	import Steps from './steps.svelte';
 	import { DoseDetails, Page } from '../types';
 	import PageLayout from './page-layout.svelte';
+	import { i18n } from '../i18n/store';
 </script>
 
 <PageLayout>
@@ -12,12 +13,12 @@
 		</div>
 
 		<div class="text-center pb-3 lg:max-w-xs lg:mx-auto">
-			<h1 class="h1 mb-4">Welcome!</h1>
+			<h1 class="h1 mb-4">{$i18n.text.doseSelection.title}</h1>
 			<p>
-				<span class="inline-block">To get started let's make sure what</span>
+				<span class="inline-block">{$i18n.text.doseSelection.description1}</span>
 				<span class="inline-block">
-					<span class="font-bold">SogroyaⓇ</span>
-					pen you have in front of you.
+					<span class="font-bold">{$i18n.text.productName}</span>
+					{$i18n.text.doseSelection.description2}
 				</span>
 			</p>
 		</div>
@@ -44,7 +45,7 @@
 			class="btn btn-primary w-full relative"
 			on:click={() => store.setPage(Page.PRIVACY_POLICY_CONSENT)}
 		>
-			<span>Let's get started</span>
+			<span>{$i18n.text.doseSelection.proceedButton}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="absolute right-6 h-6 w-6"

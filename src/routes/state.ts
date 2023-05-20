@@ -3,6 +3,7 @@ import { createEvents, type EventAttributes } from 'ics';
 import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
 import { reportEvent, reportPageNavigationToGA } from './analytics';
 import { Dose, Page, Day, DoseDetails } from './types';
+import { i18n } from './i18n/store';
 
 interface State {
 	page: Page;
@@ -46,6 +47,7 @@ export const store = {
 		const now = new Date();
 		const dayIndex = Object.values(Day).indexOf(state.day) as DayIndex;
 		const twoDaysAgo = subDays(now, 2);
+		const texts = get(i18n).text.downloadCalendarFile;
 		interface Notification {
 			date: Date;
 			title: string;
@@ -57,8 +59,8 @@ export const store = {
 		const mainNotificationDate = nextDay(twoDaysAgo, dayIndex);
 		const mainNotification: Notification = {
 			date: mainNotificationDate,
-			title: `It's time to take your SogroyaⓇ weekly dose`,
-			description: `Take ${DoseDetails[state.dose].label} of SogroyaⓇ`,
+			title: texts.mainNotificationTitle,
+			description: texts.mainNotificationDescription(DoseDetails[state.dose].label),
 			day: mainNotificationDate.getDate() + 1,
 			month: mainNotificationDate.getMonth() + 1,
 			year: mainNotificationDate.getFullYear()
@@ -66,8 +68,8 @@ export const store = {
 		const dayBeforeNotificationDate = subDays(mainNotificationDate, 1);
 		const dayBeforeNotification: Notification = {
 			date: dayBeforeNotificationDate,
-			title: `Remember, tomorrow is the day to take your SogroyaⓇ weekly dose`,
-			description: `Prepare ${DoseDetails[state.dose].label} of SogroyaⓇ for tomorrow`,
+			title: texts.dayBeforeNotificationTitle,
+			description: texts.dayBeforeNotificationDescription(DoseDetails[state.dose].label),
 			day: dayBeforeNotificationDate.getDate() + 1,
 			month: dayBeforeNotificationDate.getMonth() + 1,
 			year: dayBeforeNotificationDate.getFullYear()
@@ -109,7 +111,6 @@ export const store = {
 			}
 		];
 
-		console.log({ mainNotification, dayBeforeNotification });
 		const filename = 'dose-reminder.ics';
 		const file: File = await new Promise((resolve, reject) => {
 			createEvents(events, (error, value) => {
