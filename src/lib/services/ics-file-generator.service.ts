@@ -44,8 +44,11 @@ function generateNotifications(
 	const mainNotificationDateBasis = subDays(now, DAYS_BEFORE_FOR_CORRECT_TODAY_NOTIFICATION);
 	const mainNotificationDate = nextDay(mainNotificationDateBasis, dayIndex);
 	hour = hour + (isAM ? 0 : 12);
+	if (hour === 12 && isAM) {
+		hour = 0; // 12 AM
+	}
 	if (hour === 24) {
-		hour = 0;
+		hour = 12; // 12 PM
 	}
 	const mainNotification: Notification = {
 		date: mainNotificationDate,
