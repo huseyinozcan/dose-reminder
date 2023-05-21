@@ -3,6 +3,8 @@
 	import { Day, Page, clouds } from '$lib/types';
 	import { Layout, Steps } from '$lib/components';
 
+	const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
@@ -86,7 +88,7 @@
 				<!-- <h3>{$i18n.text.dateTimeSelection.minute}</h3> -->
 				<!-- Minute selector -->
 				<select bind:value={$logic.minute} class="grow">
-					{#each Array.from(Array(60).keys()) as minute}
+					{#each minutes as minute}
 						<option value={minute}>{minute}</option>
 					{/each}
 				</select>
