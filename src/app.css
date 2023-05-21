@@ -54,6 +54,7 @@
 
 	.btn {
 		@apply text-sm lg:text-lg font-normal rounded-full h-14 lg:h-16 px-6 flex items-center justify-center;
+		@apply disabled:opacity-75 disabled:cursor-not-allowed;
 	}
 
 	.btn-primary {
