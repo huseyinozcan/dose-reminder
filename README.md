@@ -9,8 +9,9 @@
 ## Development
 
 1. Install dependencies `pnpm i`
-2. Run the development server `pnpm dev`
-3. Commit to the `main` branch to deploy to Vercel
+2. Copy file `.env.example` to `.env` and fill it with values
+3. Run the development server `pnpm dev`
+4. Commit to the `main` branch to deploy to Vercel
 
 ## Deployment to another hosting
 
