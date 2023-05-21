@@ -15,6 +15,6 @@
 
 ## Deployment to another hosting
 
-1. Install dependencies and build project `pnpm i && pnpm build`
+1. Install dependencies, fill `.env` file and build project `pnpm i && pnpm build`
 2. Copy the `build` folder to your hosting
 3. Configure your hosting to serve `index.html` for all routes
