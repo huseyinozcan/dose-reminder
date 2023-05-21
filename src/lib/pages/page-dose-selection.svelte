@@ -2,6 +2,8 @@
 	import { logic, i18n } from '$lib/stores';
 	import { DoseDetails, Page, clouds } from '$lib/types';
 	import { Layout, Steps } from '$lib/components';
+
+	let scrollTarget: HTMLElement;
 </script>
 
 <Layout>
@@ -29,7 +31,12 @@
 		>
 			{#each Object.entries(DoseDetails) as [key, value]}
 				<button
-					on:click={() => logic.setDose(key)}
+					on:click={() => {
+						logic.setDose(key);
+						if (scrollTarget) {
+							scrollTarget.scrollIntoView({ behavior: 'smooth' });
+						}
+					}}
 					class={`h-20 px-6 rounded-full relative text-left
 				${key === $logic.dose ? 'bg-amber-500 text-white font-bold' : 'bg-gray-100 text-blue-950'}`}
 				>
@@ -61,6 +68,7 @@
 				<path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 			</svg>
 		</button>
+		<div bind:this={scrollTarget} />
 	</slot>
 
 	<slot slot="desktop-image">
