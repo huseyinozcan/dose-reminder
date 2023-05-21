@@ -1,20 +1,12 @@
 <script lang="ts">
-	import { store } from '../state';
-	import Steps from './steps.svelte';
-	import { Page } from '../types';
-	import PageLayout from './page-layout.svelte';
-	import { i18n } from '../i18n/store';
+	import { logic, i18n } from '$lib/stores';
+	import { Page, clouds } from '$lib/types';
+	import { Layout, Steps } from '$lib/components';
 
 	let consent = true;
-
-	let clouds = [
-		{ id: 1, x: 92, y: 32 },
-		{ id: 2, x: 0, y: 84 },
-		{ id: 3, x: 80, y: 192 }
-	];
 </script>
 
-<PageLayout>
+<Layout>
 	<slot slot="header">
 		<div class="mb-8 lg:mb-0">
 			<Steps stepIndex={1} />
@@ -26,7 +18,9 @@
 	</slot>
 
 	<slot>
-		<div class="flex-1 flex flex-col justify-center items-center text-center gap-y-6 lg:-mt-4">
+		<div
+			class="flex-1 flex flex-col justify-center items-center text-center gap-y-6 mt-2.5 mb-6 lg:-mt-4"
+		>
 			<h1 class="h1">{$i18n.text.policyConsent.title}</h1>
 
 			<p class="leading-relaxed max-w-xs">
@@ -75,7 +69,7 @@
 				</span>
 			</label>
 			<div class="flex gap-3">
-				<button class="grow btn btn-secondary" on:click={() => store.setPage(Page.DOSE_SELECTION)}>
+				<button class="grow btn btn-secondary" on:click={() => logic.setPage(Page.DOSE_SELECTION)}>
 					<svg
 						class="text-indigo-950"
 						width="18"
@@ -93,7 +87,7 @@
 				<button
 					class="grow btn btn-primary"
 					disabled={!consent}
-					on:click={() => store.setPage(Page.DATE_TIME_SELECTION)}
+					on:click={() => logic.setPage(Page.DATE_TIME_SELECTION)}
 				>
 					{$i18n.text.policyConsent.proceedButton}
 				</button>
@@ -120,4 +114,4 @@
 			{/each}
 		</div>
 	</slot>
-</PageLayout>
+</Layout>

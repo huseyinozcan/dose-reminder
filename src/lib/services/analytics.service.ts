@@ -1,4 +1,4 @@
-import { Page } from './types';
+import { Page } from '$lib/types';
 
 const pageNavigationToGAEvent = new Map<string, string>([
 	[`${Page.DOSE_SELECTION}_${Page.PRIVACY_POLICY_CONSENT}`, 'dose_selected'],

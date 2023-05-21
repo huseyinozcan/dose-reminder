@@ -1,22 +1,14 @@
 <script lang="ts">
-	import { store } from '../state';
-	import Steps from './steps.svelte';
-	import { Day, Page } from '../types';
-	import PageLayout from './page-layout.svelte';
-	import { i18n } from '../i18n/store';
-
-	let clouds = [
-		{ id: 1, x: 92, y: 32 },
-		{ id: 2, x: 0, y: 84 },
-		{ id: 3, x: 80, y: 192 }
-	];
+	import { logic, i18n } from '$lib/stores';
+	import { Day, Page, clouds } from '$lib/types';
+	import { Layout, Steps } from '$lib/components';
 
 	function capitalize(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
 </script>
 
-<PageLayout>
+<Layout>
 	<slot slot="header">
 		<div>
 			<Steps stepIndex={2} />
@@ -24,7 +16,7 @@
 	</slot>
 
 	<slot>
-		<div class="flex-1 flex flex-col pt-8 items-center text-center">
+		<div class="flex-1 flex flex-col pt-2 items-center text-center">
 			<div class="text-center pb-3">
 				<h1 class="h1 mb-4">{$i18n.text.dateTimeSelection.dayTitle}</h1>
 				<p class="text-gray-400">
@@ -34,7 +26,7 @@
 			</div>
 			<!-- Day selector -->
 			<div class="bg-gray-100 rounded-xl p-9 w-full">
-				<select bind:value={$store.day} class="block w-full sm:max-w-xs">
+				<select bind:value={$logic.day} class="block w-full sm:max-w-xs">
 					{#each Object.keys(Day) as day}
 						<option value={day}>{capitalize($i18n.text.dateTimeSelection.day(day))}</option>
 					{/each}
@@ -52,9 +44,9 @@
 			<!-- AM/PM checkbox -->
 			<div class="flex items-center gap-2 mb-4">
 				<span
-					on:click={() => ($store.isAM = true)}
+					on:click={() => ($logic.isAM = true)}
 					class={`cursor-pointer text-sm font-bold ${
-						$store.isAM === true ? 'text-teal-600' : 'text-gray-400'
+						$logic.isAM === true ? 'text-teal-600' : 'text-gray-400'
 					}`}>AM</span
 				>
 
@@ -63,36 +55,37 @@
 					class="bg-teal-600 relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-0"
 					role="switch"
 					aria-checked="false"
-					on:click={() => ($store.isAM = !$store.isAM)}
+					on:click={() => ($logic.isAM = !$logic.isAM)}
 				>
 					<span
 						aria-hidden="true"
 						class={`translate-x-0 pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-							$store.isAM === true ? 'translate-x-0' : 'translate-x-6'
+							$logic.isAM === true ? 'translate-x-0' : 'translate-x-6'
 						}`}
 					/>
 				</button>
 
 				<span
-					on:click={() => ($store.isAM = false)}
+					on:click={() => ($logic.isAM = false)}
 					class={`cursor-pointer text-sm font-bold ${
-						$store.isAM !== true ? 'text-teal-600' : 'text-gray-400'
+						$logic.isAM !== true ? 'text-teal-600' : 'text-gray-400'
 					}`}>PM</span
 				>
 			</div>
 
-			<div class="bg-gray-100 rounded-xl p-9 w-full flex items-center gap-5">
+			<div class="bg-gray-100 rounded-xl p-9 w-full flex items-center justify-center">
 				<!-- Hour selector -->
-				<h3>{$i18n.text.dateTimeSelection.hour}</h3>
-				<select bind:value={$store.hour}>
+				<!-- <h3>{$i18n.text.dateTimeSelection.hour}</h3> -->
+				<select bind:value={$logic.hour} class="grow">
 					{#each Array.from(Array(12).keys()) as hour}
 						<option value={hour + 1}>{hour + 1}</option>
 					{/each}
 				</select>
 
-				<h3>{$i18n.text.dateTimeSelection.minute}</h3>
+				<span class="mx-3">:</span>
+				<!-- <h3>{$i18n.text.dateTimeSelection.minute}</h3> -->
 				<!-- Minute selector -->
-				<select bind:value={$store.minute}>
+				<select bind:value={$logic.minute} class="grow">
 					{#each Array.from(Array(60).keys()) as minute}
 						<option value={minute}>{minute}</option>
 					{/each}
@@ -102,10 +95,10 @@
 
 		<div>
 			<!-- shouldNotifyDayBefore checkbox -->
-			<label for="custom-checkbox" class="flex items-center cursor-pointer ml-4 mb-5">
+			<label for="custom-checkbox" class="flex items-center cursor-pointer ml-4 my-5">
 				<span class="bg-teal-600 flex items-center justify-center w-5 h-5 rounded-full">
 					<input
-						bind:checked={$store.shouldNotifyDayBefore}
+						bind:checked={$logic.shouldNotifyDayBefore}
 						type="checkbox"
 						id="custom-checkbox"
 						class="peer/checkbox hidden"
@@ -131,7 +124,7 @@
 			<div class="flex gap-3">
 				<button
 					class="grow btn btn-secondary"
-					on:click={() => store.setPage(Page.PRIVACY_POLICY_CONSENT)}
+					on:click={() => logic.setPage(Page.PRIVACY_POLICY_CONSENT)}
 				>
 					<svg
 						class="text-indigo-950"
@@ -149,7 +142,7 @@
 				</button>
 				<button
 					class="grow btn btn-primary"
-					on:click={() => store.setPage(Page.DOWNLOAD_CALENDAR_FILE)}
+					on:click={() => logic.setPage(Page.DOWNLOAD_CALENDAR_FILE)}
 				>
 					{$i18n.text.dateTimeSelection.proceedButton}
 				</button>
@@ -176,4 +169,4 @@
 			{/each}
 		</div>
 	</slot>
-</PageLayout>
+</Layout>

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Lang, i18n } from '../i18n/store';
+	import { i18n } from '$lib/stores';
+	import { Lang } from '$lib/types';
 
 	const langs = Object.keys(Lang) as Lang[];
 </script>

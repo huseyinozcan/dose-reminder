@@ -1,4 +1,47 @@
-import type { Day } from '../types';
+export enum Page {
+	DOSE_SELECTION = 'DOSE_SELECTION',
+	PRIVACY_POLICY_CONSENT = 'PRIVACY_POLICY_CONSENT',
+	DATE_TIME_SELECTION = 'DATE_TIME_SELECTION',
+	DOWNLOAD_CALENDAR_FILE = 'DOWNLOAD_CALENDAR_FILE'
+}
+
+export enum Dose {
+	D_5_MG = 'D_5_MG',
+	D_10_MG = 'D_10_MG',
+	D_15_MG = 'D_15_MG'
+}
+
+export const DoseDetails = {
+	[Dose.D_5_MG]: {
+		label: '5 mg',
+		imageURL: '/img/pen-1.webp'
+	},
+	[Dose.D_10_MG]: {
+		label: '10 mg',
+		imageURL: '/img/pen-2.webp'
+	},
+	[Dose.D_15_MG]: {
+		label: '15 mg',
+		imageURL: '/img/pen-3.webp'
+	}
+};
+
+export enum Day {
+	MONDAY = 'MONDAY',
+	TUESDAY = 'TUESDAY',
+	WEDNESDAY = 'WEDNESDAY',
+	THURSDAY = 'THURSDAY',
+	FRIDAY = 'FRIDAY',
+	SATURDAY = 'SATURDAY',
+	SUNDAY = 'SUNDAY'
+}
+
+export enum Lang {
+	EN = 'EN',
+	TR = 'TR',
+	FR = 'FR',
+	DE = 'DE'
+}
 
 export interface Dictionary {
 	productName: string;
@@ -41,3 +84,15 @@ export interface Dictionary {
 		dayBeforeNotificationDescription: (dose: string) => string;
 	};
 }
+
+export interface Cloud {
+	id: number;
+	x: number;
+	y: number;
+}
+
+export const clouds: Cloud[] = [
+	{ id: 1, x: 92, y: 32 },
+	{ id: 2, x: 0, y: 84 },
+	{ id: 3, x: 80, y: 192 }
+];

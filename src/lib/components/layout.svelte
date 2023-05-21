@@ -13,7 +13,7 @@
 				<slot name="header" />
 			</header>
 
-			<main class="flex-1 flex flex-col w-full pb-6 px-[1.875rem] lg:px-0 bg-white">
+			<main class="flex-1 flex flex-col w-full py-6 px-[1.875rem] lg:px-0 bg-white">
 				<div class="flex-1 flex flex-col mx-auto w-full max-w-sm">
 					<slot />
 				</div>

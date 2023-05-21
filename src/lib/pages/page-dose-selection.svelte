@@ -1,18 +1,10 @@
 <script lang="ts">
-	import { store } from '../state';
-	import Steps from './steps.svelte';
-	import { DoseDetails, Page } from '../types';
-	import PageLayout from './page-layout.svelte';
-	import { i18n } from '../i18n/store';
-
-	let clouds = [
-		{ id: 1, x: 92, y: 32 },
-		{ id: 2, x: 0, y: 84 },
-		{ id: 3, x: 80, y: 192 }
-	];
+	import { logic, i18n } from '$lib/stores';
+	import { DoseDetails, Page, clouds } from '$lib/types';
+	import { Layout, Steps } from '$lib/components';
 </script>
 
-<PageLayout>
+<Layout>
 	<slot slot="header">
 		<div class="mb-8 lg:mb-20">
 			<Steps stepIndex={0} />
@@ -33,13 +25,13 @@
 	<slot>
 		<div
 			data-e2e="doses"
-			class="flex-1 flex flex-col justify-center gap-5 -mx-[1.875rem] px-[1.875rem] overflow-hidden"
+			class="flex-1 flex flex-col justify-center gap-5 -mx-[1.875rem] mb-5 px-[1.875rem] overflow-hidden"
 		>
 			{#each Object.entries(DoseDetails) as [key, value]}
 				<button
-					on:click={() => store.setDose(key)}
+					on:click={() => logic.setDose(key)}
 					class={`h-20 px-6 rounded-full relative text-left
-				${key === $store.dose ? 'bg-amber-500 text-white font-bold' : 'bg-gray-100 text-blue-950'}`}
+				${key === $logic.dose ? 'bg-amber-500 text-white font-bold' : 'bg-gray-100 text-blue-950'}`}
 				>
 					{value.label}
 					<img
@@ -55,7 +47,7 @@
 		</div>
 		<button
 			class="btn btn-primary w-full relative"
-			on:click={() => store.setPage(Page.PRIVACY_POLICY_CONSENT)}
+			on:click={() => logic.setPage(Page.PRIVACY_POLICY_CONSENT)}
 		>
 			<span>{$i18n.text.doseSelection.proceedButton}</span>
 			<svg
@@ -90,4 +82,4 @@
 			{/each}
 		</div>
 	</slot>
-</PageLayout>
+</Layout>

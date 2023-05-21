@@ -3,98 +3,98 @@
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: 'Apis';
-        src: url('/fonts/Apis-Light.ttf') format('truetype');
-        font-weight: 300;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: 'Apis';
-        src: url('/fonts/Apis-Regular.ttf') format('truetype');
-        font-weight: 400;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: 'Apis';
-        src: url('/fonts/Apis-Medium.ttf') format('truetype');
-        font-weight: 500;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: 'Apis';
-        src: url('/fonts/Apis-Bold.ttf') format('truetype');
-        font-weight: 700;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: 'Apis';
-        src: url('/fonts/Apis-ExtraBold.ttf') format('truetype');
-        font-weight: 800;
-        font-style: normal;
-    }
+	@font-face {
+		font-family: 'Apis';
+		src: url('/fonts/Apis-Light.ttf') format('truetype');
+		font-weight: 300;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Apis';
+		src: url('/fonts/Apis-Regular.ttf') format('truetype');
+		font-weight: 400;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Apis';
+		src: url('/fonts/Apis-Medium.ttf') format('truetype');
+		font-weight: 500;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Apis';
+		src: url('/fonts/Apis-Bold.ttf') format('truetype');
+		font-weight: 700;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Apis';
+		src: url('/fonts/Apis-ExtraBold.ttf') format('truetype');
+		font-weight: 800;
+		font-style: normal;
+	}
 
-    html {
-        font-family: Apis, system-ui, sans-serif;
-    }
+	html {
+		font-family: Apis, system-ui, sans-serif;
+	}
 
-    body{
-        @apply text-blue-950;
-    }
-    select{
-        @apply rounded-full border-0 h-8 pl-4 pr-10 shadow text-lg text-center;
-        @apply bg-no-repeat appearance-none;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23001965' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-        background-position: right 0.5rem center;
-        background-size: 1.5em 1.5em;
-    }
-    p{
-        @apply text-base lg:text-lg;
-    }
+	body {
+		@apply text-blue-950;
+	}
+	select {
+		@apply rounded-full border-0 h-8 pl-4 pr-10 shadow text-lg text-center;
+		@apply bg-no-repeat appearance-none;
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23001965' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+		background-position: right 0.5rem center;
+		background-size: 1.5em 1.5em;
+	}
+	p {
+		@apply text-sm lg:text-lg;
+	}
 
-    .btn{
-        @apply text-sm lg:text-lg font-normal rounded-full h-14 lg:h-16 px-6 flex items-center justify-center;
-    }
+	.btn {
+		@apply text-sm lg:text-lg font-normal rounded-full h-14 lg:h-16 px-6 flex items-center justify-center;
+	}
 
-    .btn-primary{
-        @apply text-white bg-blue-800;
-    }
+	.btn-primary {
+		@apply text-white bg-blue-800;
+	}
 
-    .btn-secondary{
-        @apply text-blue-950 bg-gray-200;
-    }
+	.btn-secondary {
+		@apply text-blue-950 bg-gray-200;
+	}
 
-    .h1{
-        @apply text-2xl lg:text-3xl font-bold;
-    }
+	.h1 {
+		@apply text-2xl lg:text-3xl font-bold;
+	}
 }
 
 @layer utilities {
-    .animate-pulse {
-        animation: pulse 5s infinite;
-    }
-    .animate-cloud {
-        animation: slide 25s linear infinite;
-    }
+	.animate-pulse {
+		animation: pulse 5s infinite;
+	}
+	.animate-cloud {
+		animation: slide 15s linear infinite;
+	}
 
-    @keyframes pulse {
-        0% {
-            transform: translateY(-16px);
-        }
-        50% {
-            transform: translateY(16px);
-        }
-        100% {
-            transform: translateY(-16px);
-        }
-    }
+	@keyframes pulse {
+		0% {
+			transform: translateY(-16px);
+		}
+		50% {
+			transform: translateY(16px);
+		}
+		100% {
+			transform: translateY(-16px);
+		}
+	}
 
-    @keyframes slide {
-        0% {
-            margin-right: -768px;
-        }
-        100% {
-            margin-right: 100%;
-        }
-    }
+	@keyframes slide {
+		0% {
+			margin-right: -768px;
+		}
+		100% {
+			margin-right: 100%;
+		}
+	}
 }

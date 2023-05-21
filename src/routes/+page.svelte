@@ -1,20 +1,24 @@
 <script lang="ts">
+	import '../app.css';
+	import { logic } from '$lib/stores';
+	import { Page } from '$lib/types';
+	import { Analytics } from '$lib/components';
 	import {
 		PageDateTimeSelection,
 		PageDoseSelection,
 		PagePolicyConsent,
 		PageDownloadCalendarFile
-	} from './components';
-	import { store } from './state';
-	import { Page } from './types';
+	} from '$lib/pages';
 </script>
 
-{#if Page.DOSE_SELECTION === $store.page}
+<Analytics />
+
+{#if Page.DOSE_SELECTION === $logic.page}
 	<PageDoseSelection />
-{:else if Page.PRIVACY_POLICY_CONSENT === $store.page}
+{:else if Page.PRIVACY_POLICY_CONSENT === $logic.page}
 	<PagePolicyConsent />
-{:else if Page.DATE_TIME_SELECTION === $store.page}
+{:else if Page.DATE_TIME_SELECTION === $logic.page}
 	<PageDateTimeSelection />
-{:else if Page.DOWNLOAD_CALENDAR_FILE === $store.page}
+{:else if Page.DOWNLOAD_CALENDAR_FILE === $logic.page}
 	<PageDownloadCalendarFile />
 {/if}

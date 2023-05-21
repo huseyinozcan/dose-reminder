@@ -1,16 +1,6 @@
 import { derived, writable } from 'svelte/store';
-import { en } from './en';
-import type { Dictionary } from './types';
-import { de } from './de';
-import { tr } from './tr';
-import { fr } from './fr';
-
-export enum Lang {
-	EN = 'EN',
-	TR = 'TR',
-	FR = 'FR',
-	DE = 'DE'
-}
+import { type Dictionary, Lang } from '$lib/types';
+import { en, de, tr, fr } from '../i18n';
 
 const dictionaries = new Map<Lang, Dictionary>([
 	[Lang.EN, en],

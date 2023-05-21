@@ -1,5 +1,4 @@
-import { Day } from '../types';
-import type { Dictionary } from './types';
+import { Day, type Dictionary } from '$lib/types';
 
 export const tr: Dictionary = {
 	productName: 'Sogroya®',

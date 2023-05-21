@@ -1,18 +1,10 @@
 <script lang="ts">
-	import { store } from '../state';
-	import Steps from './steps.svelte';
-	import { Page } from '../types';
-	import PageLayout from './page-layout.svelte';
-	import { i18n } from '../i18n/store';
-
-	let clouds = [
-		{ id: 1, x: 92, y: 32 },
-		{ id: 2, x: 0, y: 84 },
-		{ id: 3, x: 80, y: 192 }
-	];
+	import { logic, i18n } from '$lib/stores';
+	import { Page, clouds } from '$lib/types';
+	import { Layout, Steps } from '$lib/components';
 </script>
 
-<PageLayout>
+<Layout>
 	<slot slot="header">
 		<div class="mb-8 lg:mb-0">
 			<Steps stepIndex={3} />
@@ -25,7 +17,7 @@
 
 	<slot>
 		<div
-			class="flex-1 flex flex-col items-center lg:justify-center text-center gap-y-6 pt-12 lg:pt-0"
+			class="flex-1 flex flex-col items-center lg:justify-center text-center gap-y-6 mb-6 pt-12 lg:pt-0"
 		>
 			<h1 class="h1 lg:-mt-20">{$i18n.text.downloadCalendarFile.title}</h1>
 
@@ -36,7 +28,7 @@
 		<div class="flex gap-3">
 			<button
 				class="grow btn btn-secondary"
-				on:click={() => store.setPage(Page.DATE_TIME_SELECTION)}
+				on:click={() => logic.setPage(Page.DATE_TIME_SELECTION)}
 			>
 				<svg
 					class="text-indigo-950"
@@ -52,7 +44,7 @@
 					/>
 				</svg>
 			</button>
-			<button class="grow btn btn-primary" on:click={store.downloadISCFile}
+			<button class="grow btn btn-primary" on:click={logic.downloadISCFile}
 				>{$i18n.text.downloadCalendarFile.proceedButton}</button
 			>
 		</div>
@@ -77,4 +69,4 @@
 			{/each}
 		</div>
 	</slot>
-</PageLayout>
+</Layout>
