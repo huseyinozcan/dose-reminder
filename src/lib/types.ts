@@ -38,10 +38,17 @@ export enum Day {
 
 export enum Lang {
 	EN = 'EN',
-	TR = 'TR',
 	FR = 'FR',
-	DE = 'DE'
+	DE = 'DE',
+	PT = 'PT'
 }
+
+export const LangToLocale = new Map<Lang, string>([
+	[Lang.EN, 'en-GB'],
+	[Lang.FR, 'fr-FR'],
+	[Lang.DE, 'de-DE'],
+	[Lang.PT, 'pt-BR']
+]);
 
 export interface Dictionary {
 	productName: string;
