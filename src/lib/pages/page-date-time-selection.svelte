@@ -156,7 +156,7 @@
 	<slot slot="desktop-image">
 		<div class="relative w-full h-96">
 			<img
-				class="mx-auto z-10 animate-pulse"
+				class="mx-auto relative z-20 animate-pulse"
 				src="/img/calendar.svg"
 				alt="Calendar"
 				width="340"
@@ -164,7 +164,7 @@
 			/>
 			{#each clouds as cloud}
 				<img
-					class="absolute z-20 animate-cloud"
+					class="absolute z-10 animate-cloud"
 					style="right: {cloud.x}%; top: {cloud.y}px;"
 					src="/img/cloud-{cloud.id}.svg"
 					alt="clouds"

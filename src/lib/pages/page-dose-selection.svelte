@@ -74,7 +74,7 @@
 	<slot slot="desktop-image">
 		<div class="relative w-full h-72">
 			<img
-				class="mx-auto z-10 animate-pulse"
+				class="mx-auto relative z-20 animate-pulse"
 				src="/img/hand.svg"
 				alt="Hand"
 				width="550"
@@ -82,7 +82,7 @@
 			/>
 			{#each clouds as cloud}
 				<img
-					class="absolute z-20 animate-cloud"
+					class="absolute z-10 animate-cloud"
 					style="right: {cloud.x}%; top: {cloud.y}px;"
 					src="/img/cloud-{cloud.id}.svg"
 					alt="clouds"

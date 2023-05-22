@@ -10,8 +10,38 @@
 			<Steps stepIndex={3} />
 		</div>
 
-		<div class="text-center lg:hidden">
-			<img src="/img/image-step-4.png" width="682" height="397" alt="privacy policy consent" />
+		<div class="text-center -m-9 py-9 overflow-hidden lg:hidden">
+			<div class="relative w-full h-[12.5rem]">
+				<img
+					class="mx-auto relative max-h-full z-20 animate-pulse"
+					src="/img/hand-mobile.svg"
+					alt="Hand"
+					width="156"
+					height="199"
+				/>
+				<img
+					class="absolute z-10 animate-cloud h-5"
+					src="/img/cloud-1.svg"
+					alt="clouds"
+					style="right: 77%; top: 0;"
+				/>
+				<img
+					class="absolute z-10 animate-cloud"
+					src="/img/cloud-2.svg"
+					alt="clouds"
+					width="109"
+					height="28"
+					style="right: 4%; top: 30px;"
+				/>
+				<img
+					class="absolute z-10 animate-cloud"
+					src="/img/cloud-3.svg"
+					alt="clouds"
+					width="74"
+					height="29"
+					style="right: 68%; top: 90px;"
+				/>
+			</div>
 		</div>
 	</slot>
 
@@ -53,7 +83,7 @@
 	<slot slot="desktop-image">
 		<div class="relative w-full h-96">
 			<img
-				class="mx-auto z-10 animate-pulse"
+				class="mx-auto relative z-20 animate-pulse"
 				src="/img/laptop.svg"
 				alt="Laptop"
 				width="500"
@@ -61,7 +91,7 @@
 			/>
 			{#each clouds as cloud}
 				<img
-					class="absolute z-20 animate-cloud"
+					class="absolute z-10 animate-cloud"
 					style="right: {cloud.x}%; top: {cloud.y}px;"
 					src="/img/cloud-{cloud.id}.svg"
 					alt="clouds"
