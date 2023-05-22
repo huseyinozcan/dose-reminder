@@ -3,6 +3,7 @@
 	import { Day, Page, clouds } from '$lib/types';
 	import { Layout, Steps } from '$lib/components';
 
+	const hours = Array.from(Array(12).keys()).map((hour) => hour + 1);
 	const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
 	function capitalize(str: string) {
@@ -79,8 +80,8 @@
 				<!-- Hour selector -->
 				<!-- <h3>{$i18n.text.dateTimeSelection.hour}</h3> -->
 				<select bind:value={$logic.hour} class="grow">
-					{#each Array.from(Array(12).keys()) as hour}
-						<option value={hour + 1}>{hour + 1}</option>
+					{#each hours as hour}
+						<option value={hour}>{hour < 10 ? '0' + hour : hour}</option>
 					{/each}
 				</select>
 
@@ -89,7 +90,7 @@
 				<!-- Minute selector -->
 				<select bind:value={$logic.minute} class="grow">
 					{#each minutes as minute}
-						<option value={minute}>{minute}</option>
+						<option value={minute}>{minute < 10 ? '0' + minute : minute}</option>
 					{/each}
 				</select>
 			</div>
