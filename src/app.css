@@ -92,10 +92,21 @@
 
 	@keyframes slide {
 		0% {
-			margin-right: -768px;
+			margin-right: -420px;
 		}
 		100% {
 			margin-right: 100%;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		@keyframes slide {
+			0% {
+				margin-right: -768px;
+			}
+			100% {
+				margin-right: 100%;
+			}
 		}
 	}
 }
