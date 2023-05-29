@@ -21,7 +21,6 @@ export function reportPageNavigationToGA(currentPage: Page, nextPage: Page): voi
 }
 
 export function reportEvent(event: string): void {
-	console.log(`Reporting event: ${event}`);
 	window.gtag('event', event, {
 		event_name: event,
 		event_category: 'engagement',
