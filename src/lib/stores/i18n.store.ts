@@ -2,6 +2,7 @@ import { derived, writable } from 'svelte/store';
 import { type Dictionary, Lang, LangToLocale } from '$lib/types';
 import { en, de, fr, pt } from '../i18n';
 import { goto } from '$app/navigation';
+import { browser } from '$app/environment';
 
 const dictionaries = new Map<Lang, Dictionary>([
 	[Lang.EN, en],
@@ -14,8 +15,11 @@ interface State {
 	lang: Lang;
 }
 
-const url = new URL(window.location.href);
-const urlLang = url.searchParams.get('lang')?.toUpperCase() as undefined | Lang;
+let urlLang: undefined | Lang;
+if (browser) {
+	const url = new URL(window.location.href);
+	urlLang = url.searchParams.get('lang')?.toUpperCase() as undefined | Lang;
+}
 
 const initialValue: State = {
 	lang: urlLang ? urlLang : Lang.EN
@@ -39,5 +43,7 @@ export const i18n = {
 };
 
 i18n.subscribe((s) => {
-	document.documentElement.lang = LangToLocale.get(s.lang)!; // sets <html lang="en-GB"> to the current lang, to make consent script work
+	if (browser) {
+		document.documentElement.lang = LangToLocale.get(s.lang)!; // sets <html lang="en-GB"> to the current lang, to make consent script work
+	}
 });

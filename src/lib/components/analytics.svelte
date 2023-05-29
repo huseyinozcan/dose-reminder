@@ -1,17 +1,22 @@
 <script>
 	import { env } from '$env/dynamic/public';
-	const MEASURMENT_ID = env.PUBLIC_GA_MEASURMENT_ID;
-	window.dataLayer = window.dataLayer || [];
+	import { onMount } from 'svelte';
 
-	window.gtag = () => {
-		window.dataLayer.push(arguments);
-	};
-
-	gtag('js', new Date());
-	gtag('config', `${MEASURMENT_ID}`);
+	onMount(() => {
+		window.gtag('config', env.PUBLIC_GA_MEASURMENT_ID);
+	});
 </script>
 
 <svelte:head>
-	<script async src="https://www.googletagmanager.com/gtag/js?id={MEASURMENT_ID}">
+	<script async src="https://www.googletagmanager.com/gtag/js?id={env.PUBLIC_GA_MEASURMENT_ID}">
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
 	</script>
 </svelte:head>
