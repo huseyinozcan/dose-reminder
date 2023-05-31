@@ -3,7 +3,6 @@ import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
 import { type Dictionary, Day, Dose, DoseDetails } from '$lib/types';
 
 const DAYS_BEFORE_FOR_CORRECT_TODAY_NOTIFICATION = 2;
-const FILE_NAME = 'dose-reminder.ics';
 type Texts = Dictionary['downloadCalendarFile'];
 
 interface Notification {
@@ -27,8 +26,7 @@ export async function generateICSFile(
 	texts: Texts
 ): Promise<void> {
 	const notifications = generateNotifications(day, hour, minute, isAM, dose, texts);
-	const file = await generateFile(notifications);
-	downloadFile(file);
+	await generateFile(notifications);
 }
 
 function generateNotifications(
@@ -74,7 +72,7 @@ function generateNotifications(
 	return [mainNotification, dayBeforeNotification];
 }
 
-async function generateFile(notifications: Notification[]): Promise<File> {
+async function generateFile(notifications: Notification[]): Promise<void> {
 	const events: EventAttributes[] = notifications.map((notification) => ({
 		start: [
 			notification.year,
@@ -92,25 +90,10 @@ async function generateFile(notifications: Notification[]): Promise<File> {
 		busyStatus: 'BUSY',
 		recurrenceRule: `FREQ=WEEKLY;COUNT=52`
 	}));
-	const file: File = await new Promise((resolve, reject) => {
-		createEvents(events, (error, value) => {
-			if (error) {
-				reject(error);
-			}
-
-			resolve(new File([value], FILE_NAME, { type: 'plain/text' }));
-		});
+	createEvents(events, (error, value) => {
+		if (error) {
+			console.error(error);
+		}
+		window.open('data:text/calendar;charset=utf8,' + encodeURIComponent(value));
 	});
-	return file;
-}
-
-function downloadFile(file: File): void {
-	const url = URL.createObjectURL(file);
-	const anchor = document.createElement('a');
-	anchor.href = url;
-	anchor.download = FILE_NAME;
-	document.body.appendChild(anchor);
-	anchor.click();
-	document.body.removeChild(anchor);
-	URL.revokeObjectURL(url);
 }
