@@ -14,15 +14,18 @@ export enum Dose {
 export const DoseDetails = {
 	[Dose.D_5_MG]: {
 		label: '5 mg',
-		imageURL: '/img/pen-1.webp'
+		imageURL: '/img/pen-1.webp',
+		activeColorBG: 'bg-cyan-600'
 	},
 	[Dose.D_10_MG]: {
 		label: '10 mg',
-		imageURL: '/img/pen-2.webp'
+		imageURL: '/img/pen-2.webp',
+		activeColorBG: 'bg-amber-500'
 	},
 	[Dose.D_15_MG]: {
 		label: '15 mg',
-		imageURL: '/img/pen-3.webp'
+		imageURL: '/img/pen-3.webp',
+		activeColorBG: 'bg-pink-600'
 	}
 };
 

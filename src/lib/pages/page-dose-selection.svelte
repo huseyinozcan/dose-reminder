@@ -38,7 +38,11 @@
 						}
 					}}
 					class={`h-20 px-6 rounded-full relative text-left
-				${key === $logic.dose ? 'bg-amber-500 text-white font-bold' : 'bg-gray-100 text-blue-950'}`}
+				${
+					key === $logic.dose
+						? `${value.activeColorBG} text-white font-bold`
+						: 'bg-gray-100 text-blue-950'
+				}`}
 				>
 					{value.label}
 					<img
