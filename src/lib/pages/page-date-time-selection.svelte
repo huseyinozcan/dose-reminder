@@ -46,12 +46,14 @@
 
 			<!-- AM/PM checkbox -->
 			<div class="flex items-center gap-2 mb-4">
-				<span
+				<button
 					on:click={() => ($logic.isAM = true)}
 					class={`cursor-pointer text-sm font-bold ${
 						$logic.isAM === true ? 'text-teal-600' : 'text-gray-400'
-					}`}>AM</span
+					}`}
 				>
+					AM
+				</button>
 
 				<button
 					type="button"
@@ -68,12 +70,14 @@
 					/>
 				</button>
 
-				<span
+				<button
 					on:click={() => ($logic.isAM = false)}
 					class={`cursor-pointer text-sm font-bold ${
 						$logic.isAM !== true ? 'text-teal-600' : 'text-gray-400'
-					}`}>PM</span
+					}`}
 				>
+					PM
+				</button>
 			</div>
 
 			<div class="bg-gray-100 rounded-xl p-9 w-full flex items-center justify-center">

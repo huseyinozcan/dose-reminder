@@ -6,7 +6,7 @@
 
 <div class="text-center">
 	<nav aria-label="Progress" class="inline-block">
-		<ol role="list" class="flex items-center">
+		<ol class="flex items-center">
 			{#each Array.from(Array(totalSteps).keys()) as step}
 				{#if stepIndex > step}
 					<li class="relative pr-10 sm:pr-20">
