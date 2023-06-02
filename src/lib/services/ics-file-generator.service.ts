@@ -51,7 +51,7 @@ function generateNotifications(
 	const mainNotification: Notification = {
 		date: mainNotificationDate,
 		title: texts.mainNotificationTitle,
-		description: texts.mainNotificationDescription(DoseDetails[dose].label),
+		description: '', // texts.mainNotificationDescription(DoseDetails[dose].label),
 		day: mainNotificationDate.getDate() + 1,
 		month: mainNotificationDate.getMonth() + 1,
 		year: mainNotificationDate.getFullYear(),
@@ -62,7 +62,7 @@ function generateNotifications(
 	const dayBeforeNotification: Notification = {
 		date: dayBeforeNotificationDate,
 		title: texts.dayBeforeNotificationTitle,
-		description: texts.dayBeforeNotificationDescription(DoseDetails[dose].label),
+		description: '', // texts.dayBeforeNotificationDescription(DoseDetails[dose].label),
 		day: dayBeforeNotificationDate.getDate() + 1,
 		month: dayBeforeNotificationDate.getMonth() + 1,
 		year: dayBeforeNotificationDate.getFullYear(),
