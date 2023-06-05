@@ -43,7 +43,8 @@ export enum Lang {
 	EN = 'EN',
 	FR = 'FR',
 	DE = 'DE',
-	PT = 'PT'
+	PT = 'PT',
+	JP = 'JP'
 }
 
 export const LangToLocale = new Map<Lang, string>([

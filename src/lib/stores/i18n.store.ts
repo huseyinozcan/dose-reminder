@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
 import { type Dictionary, Lang, LangToLocale } from '$lib/types';
-import { en, de, fr, pt } from '../i18n';
+import { en, de, fr, pt, jp } from '../i18n';
 import { goto } from '$app/navigation';
 import { browser } from '$app/environment';
 
@@ -8,7 +8,8 @@ const dictionaries = new Map<Lang, Dictionary>([
 	[Lang.EN, en],
 	[Lang.FR, fr],
 	[Lang.DE, de],
-	[Lang.PT, pt]
+	[Lang.PT, pt],
+	[Lang.JP, jp]
 ]);
 
 interface State {
