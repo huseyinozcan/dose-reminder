@@ -70,6 +70,7 @@ export interface Dictionary {
 		consentCheckbox1: string;
 		consentCheckbox2: string;
 		privacyPolicy: string;
+		privacyPolicyURL: string;
 		proceedButton: string;
 	};
 	dateTimeSelection: {

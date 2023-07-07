@@ -89,7 +89,7 @@
 					<span class="block">{$i18n.text.policyConsent.consentCheckbox1}</span>
 					<span class="block"
 						>{$i18n.text.policyConsent.consentCheckbox2}
-						<a href="/privacy-policy/{$i18n.lang.toLowerCase()}" class="underline">
+						<a href="{$i18n.text.policyConsent.privacyPolicyURL}" class="underline" target="_blank">
 							{$i18n.text.policyConsent.privacyPolicy}
 						</a>
 						.

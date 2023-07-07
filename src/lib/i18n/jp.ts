@@ -17,6 +17,7 @@ export const jp: Dictionary = {
 		consentCheckbox1: 'はい、カレンダー機能を利用することに同意します。',
 		consentCheckbox2: '詳細については、弊社の',
 		privacyPolicy: 'プライバシーポリシー',
+		privacyPolicyURL: 'https://www.novonordisk.co.jp/privacy-policy.html',
 		proceedButton: 'はい、リマインダーを設定する'
 	},
 	dateTimeSelection: {

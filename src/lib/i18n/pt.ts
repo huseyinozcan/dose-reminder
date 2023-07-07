@@ -3,25 +3,26 @@ import { Day, type Dictionary } from '$lib/types';
 export const pt: Dictionary = {
 	productName: 'Sogroya®',
 	doseSelection: {
-		title: 'Bem-vindo!',
+		title: 'Bem-vindo(a)!',
 		description1: 'Para começar, vamos garantir',
-		description2: 'que caneta você tem em mãos.',
+		description2: 'qual caneta de Sogroya® você tem em mãos.',
 		proceedButton: 'Vamos começar'
 	},
 	policyConsent: {
 		title: 'Primeiros Passos',
-		description1: 'Para ajudá-lo a começar bem com',
-		description2: 'você pode escolher configurar lembretes semanais diretamente no seu calendário.',
+		description1: 'Para ajudá-lo(a) em seu tratamento com',
+		description2: 'você pode escolher configurar lembretes semanais diretamente no calendário do seu smartphone.',
 		description3:
-			'Se você deseja configurar um lembrete, marque a caixa abaixo para nos permitir calcular a entrada necessária.',
+			'Se você deseja configurar um lembrete, por favor marque a caixa abaixo para nos permitir auxiliá-lo nesta atividade',
 		consentCheckbox1: 'Sim, eu consinto em usar a função do calendário.',
 		consentCheckbox2: 'Leia mais sobre a nossa',
 		privacyPolicy: 'Política de Privacidade',
+		privacyPolicyURL: 'https://www.novonordisk.com.br/privacy-policy.html',
 		proceedButton: 'Sim, definir lembrete'
 	},
 	dateTimeSelection: {
 		dayTitle: 'Qual Dia?',
-		dayDescription1: 'Selecione um dia para o lembrete da sua dose semanal',
+		dayDescription1: 'Selecione um dia da semana para o lembrete da sua dose semanal',
 		dayDescription2: '',
 		day: (dia: Day | string) => {
 			switch (dia) {
@@ -44,17 +45,17 @@ export const pt: Dictionary = {
 			}
 		},
 		timeTitle: 'Qual Hora?',
-		timeDescription1: 'Selecione um horário para um lembrete diário de dose',
+		timeDescription1: 'Selecione horário para o lembrete da sua dose semanal',
 		timeDescription2: '',
 		hour: 'Hora:',
 		minute: 'Minuto:',
-		dayBeforeCheckbox: 'Gostaria de ser informado um dia antes',
+		dayBeforeCheckbox: 'Gostaria de receber um lembrete no dia anterior à aplicação',
 		proceedButton: 'Continuar'
 	},
 	downloadCalendarFile: {
 		title: 'Baixar Lembretes',
 		description:
-			'Seu lembrete está pronto para ser baixado em seu dispositivo. Por favor, clique no botão de download abaixo para continuar no seu calendário.',
+			'Seu lembrete está pronto para ser baixado em seu dispositivo. Por favor, clique no botão de download abaixo para continuar no calendário do seu smartphone',
 		proceedButton: 'Baixar para o calendário',
 		mainNotificationTitle: 'É hora de tomar sua dose semanal de SogroyaⓇ',
 		mainNotificationDescription: (dose: string) => `Tome ${dose} de SogroyaⓇ`,

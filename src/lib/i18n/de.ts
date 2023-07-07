@@ -18,6 +18,7 @@ export const de: Dictionary = {
 		consentCheckbox1: 'Ja, ich stimme der Verwendung der Kalenderfunktion zu.',
 		consentCheckbox2: 'Lesen Sie mehr über unsere',
 		privacyPolicy: 'Datenschutzrichtlinie',
+		privacyPolicyURL: 'https://www.novonordisk.de/privacy-policy.html',
 		proceedButton: 'Ja, Erinnerung einrichten'
 	},
 	dateTimeSelection: {
