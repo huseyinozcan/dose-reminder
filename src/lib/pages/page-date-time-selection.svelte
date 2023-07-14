@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { logic, i18n } from '$lib/stores';
-	import { Day, Page, clouds } from '$lib/types';
+	import { Day, Page, clouds, TimeFormat, MeridiemPeriod } from '$lib/types';
 	import { Layout, Steps } from '$lib/components';
 
-	const hours = Array.from(Array(12).keys()).map((hour) => hour + 1);
+	const hours =
+		$i18n.timeFormat === TimeFormat.H12
+			? Array.from(Array(12).keys()).map((hour) => hour + 1)
+			: Array.from(Array(24).keys());
 	const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
 	function capitalize(str: string) {
@@ -45,43 +48,48 @@
 			</div>
 
 			<!-- AM/PM checkbox -->
-			<div class="flex items-center gap-2 mb-4">
-				<button
-					on:click={() => ($logic.isAM = true)}
-					class={`cursor-pointer text-sm font-bold ${
-						$logic.isAM === true ? 'text-teal-600' : 'text-gray-400'
-					}`}
-				>
-					AM
-				</button>
-
-				<button
-					type="button"
-					class="bg-teal-600 relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-0"
-					role="switch"
-					aria-checked="false"
-					on:click={() => ($logic.isAM = !$logic.isAM)}
-				>
-					<span
-						aria-hidden="true"
-						class={`translate-x-0 pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-							$logic.isAM === true ? 'translate-x-0' : 'translate-x-6'
+			{#if $i18n.timeFormat === TimeFormat.H12}
+				<div class="flex items-center gap-2 mb-4">
+					<button
+						on:click={() => ($logic.displayTimeFormat = MeridiemPeriod.AM)}
+						class={`cursor-pointer text-sm font-bold ${
+							$logic.displayTimeFormat === MeridiemPeriod.AM ? 'text-teal-600' : 'text-gray-400'
 						}`}
-					/>
-				</button>
+					>
+						AM
+					</button>
 
-				<button
-					on:click={() => ($logic.isAM = false)}
-					class={`cursor-pointer text-sm font-bold ${
-						$logic.isAM !== true ? 'text-teal-600' : 'text-gray-400'
-					}`}
-				>
-					PM
-				</button>
-			</div>
+					<button
+						type="button"
+						class="bg-teal-600 relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-0"
+						role="switch"
+						aria-checked="false"
+						on:click={() =>
+							($logic.displayTimeFormat =
+								$logic.displayTimeFormat === MeridiemPeriod.AM
+									? MeridiemPeriod.PM
+									: MeridiemPeriod.AM)}
+					>
+						<span
+							aria-hidden="true"
+							class={`translate-x-0 pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+								$logic.displayTimeFormat === MeridiemPeriod.AM ? 'translate-x-0' : 'translate-x-6'
+							}`}
+						/>
+					</button>
+
+					<button
+						on:click={() => ($logic.displayTimeFormat = MeridiemPeriod.PM)}
+						class={`cursor-pointer text-sm font-bold ${
+							$logic.displayTimeFormat === MeridiemPeriod.PM ? 'text-teal-600' : 'text-gray-400'
+						}`}
+					>
+						PM
+					</button>
+				</div>
+			{/if}
 
 			<div class="bg-gray-100 rounded-xl p-9 w-full flex items-center justify-center">
-				<!-- Hour selector -->
 				<!-- <h3>{$i18n.text.dateTimeSelection.hour}</h3> -->
 				<select bind:value={$logic.hour} class="grow">
 					{#each hours as hour}
@@ -90,7 +98,6 @@
 				</select>
 
 				<span class="mx-3">:</span>
-				<!-- <h3>{$i18n.text.dateTimeSelection.minute}</h3> -->
 				<!-- Minute selector -->
 				<select bind:value={$logic.minute} class="grow">
 					{#each minutes as minute}

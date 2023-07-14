@@ -3,6 +3,9 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		// gtag typings are wrong or something
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		window.gtag('config', env.PUBLIC_GA_MEASURMENT_ID);
 	});
 </script>

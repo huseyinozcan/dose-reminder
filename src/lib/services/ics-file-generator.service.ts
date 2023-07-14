@@ -1,6 +1,13 @@
-import { createEvents, type EventAttributes } from 'ics';
+import {
+	Day,
+	Dose,
+	MeridiemPeriod,
+	TimeFormat,
+	type Dictionary,
+	type DisplayTimeFormat
+} from '$lib/types';
 import { nextDay, subDays, type Day as DayIndex } from 'date-fns';
-import { type Dictionary, Day, Dose, DoseDetails } from '$lib/types';
+import { createEvents, type EventAttributes } from 'ics';
 
 const DAYS_BEFORE_FOR_CORRECT_TODAY_NOTIFICATION = 2;
 type Texts = Dictionary['downloadCalendarFile'];
@@ -21,11 +28,11 @@ export async function generateICSFile(
 	day: Day,
 	hour: number,
 	minute: number,
-	isAM: boolean,
+	displayTimeFormat: DisplayTimeFormat,
 	dose: Dose,
 	texts: Texts
 ): Promise<void> {
-	const notifications = generateNotifications(day, hour, minute, isAM, dose, texts);
+	const notifications = generateNotifications(day, hour, minute, displayTimeFormat, dose, texts);
 	await generateFile(notifications);
 }
 
@@ -33,7 +40,7 @@ function generateNotifications(
 	day: Day,
 	hour: number,
 	minute: number,
-	isAM: boolean,
+	displayTimeFormat: DisplayTimeFormat,
 	dose: Dose,
 	texts: Texts
 ): Notification[] {
@@ -41,13 +48,18 @@ function generateNotifications(
 	const dayIndex = Object.values(Day).indexOf(day) as DayIndex;
 	const mainNotificationDateBasis = subDays(now, DAYS_BEFORE_FOR_CORRECT_TODAY_NOTIFICATION);
 	const mainNotificationDate = nextDay(mainNotificationDateBasis, dayIndex);
-	hour = hour + (isAM ? 0 : 12);
-	if (hour === 12 && isAM) {
-		hour = 0; // 12 AM
+
+	if (displayTimeFormat !== TimeFormat.H24) {
+		const isAM = displayTimeFormat === MeridiemPeriod.AM;
+		hour = hour + (isAM ? 0 : 12);
+		if (hour === 12 && isAM) {
+			hour = 0; // 12 AM
+		}
+		if (hour === 24) {
+			hour = 12; // 12 PM
+		}
 	}
-	if (hour === 24) {
-		hour = 12; // 12 PM
-	}
+
 	const mainNotification: Notification = {
 		date: mainNotificationDate,
 		title: texts.mainNotificationTitle,

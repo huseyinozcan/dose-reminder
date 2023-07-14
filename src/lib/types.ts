@@ -47,12 +47,17 @@ export enum Lang {
 	JP = 'JP'
 }
 
-export const LangToLocale = new Map<Lang, string>([
-	[Lang.EN, 'en-GB'],
-	[Lang.FR, 'fr-FR'],
-	[Lang.DE, 'de-DE'],
-	[Lang.PT, 'pt-BR']
-]);
+export enum TimeFormat {
+	H12 = 'H12',
+	H24 = 'H24'
+}
+
+export enum MeridiemPeriod {
+	AM = 'AM',
+	PM = 'PM'
+}
+
+export type DisplayTimeFormat = MeridiemPeriod | TimeFormat.H24;
 
 export interface Dictionary {
 	productName: string;
@@ -96,6 +101,13 @@ export interface Dictionary {
 		dayBeforeNotificationDescription: (dose: string) => string;
 	};
 }
+
+export type LangDetails = {
+	lang: Lang;
+	locale: string;
+	timeFormat: TimeFormat;
+	text: Dictionary;
+};
 
 export interface Cloud {
 	id: number;

@@ -1,7 +1,10 @@
-import { get, writable } from 'svelte/store';
 import { generateICSFile, reportEvent, reportPageNavigationToGA } from '$lib/services';
-import { Dose, Page, Day } from '$lib/types';
+import { Day, Dose, MeridiemPeriod, Page, TimeFormat, type DisplayTimeFormat } from '$lib/types';
+import { get, writable } from 'svelte/store';
+import { eventHub } from './eventHub';
 import { i18n } from './i18n.store';
+
+const defaultMeridiemPeriod = MeridiemPeriod.AM;
 
 interface State {
 	page: Page;
@@ -9,7 +12,7 @@ interface State {
 	day: Day;
 	hour: number;
 	minute: number;
-	isAM: boolean;
+	displayTimeFormat: DisplayTimeFormat;
 	shouldNotifyDayBefore: boolean;
 }
 
@@ -19,7 +22,7 @@ const initialState: State = {
 	day: Day.MONDAY,
 	hour: 8,
 	minute: 0,
-	isAM: true,
+	displayTimeFormat: defaultMeridiemPeriod,
 	shouldNotifyDayBefore: true
 };
 
@@ -41,6 +44,19 @@ export const logic = {
 		reportEvent('calendar_file_downloaded');
 		const state = get(_store);
 		const texts = get(i18n).text.downloadCalendarFile;
-		void generateICSFile(state.day, state.hour, state.minute, state.isAM, state.dose, texts);
+		void generateICSFile(
+			state.day,
+			state.hour,
+			state.minute,
+			state.displayTimeFormat,
+			state.dose,
+			texts
+		);
 	}
 };
+
+eventHub.on('setLanguage', (data) => {
+	mutateState({
+		displayTimeFormat: data.timeFormat === TimeFormat.H24 ? TimeFormat.H24 : defaultMeridiemPeriod
+	});
+});
