@@ -2,6 +2,7 @@
 	"name": "dr",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -9,7 +10,12 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"date-fns": "^2.30.0",
+		"ics": "^3.1.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.0",
@@ -21,6 +27,8 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.26.0",
+		"husky": "^8.0.0",
+		"lint-staged": "^13.2.3",
 		"postcss": "^8.4.23",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
@@ -31,9 +39,12 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"date-fns": "^2.30.0",
-		"ics": "^3.1.0"
+	"lint-staged": {
+		"*.{ts,js,css,postcss,html,json,yaml,svelte,md}": [
+			"prettier --plugin-search-dir . --write",
+			"pnpm check",
+			"pnpm eslint --fix",
+			"pnpm build --"
+		]
 	}
 }
