@@ -14,7 +14,7 @@ export const pt: Dictionary = {
 		description2: 'você pode escolher configurar lembretes semanais diretamente no calendário do seu smartphone.',
 		description3:
 			'Se você deseja configurar um lembrete, por favor marque a caixa abaixo para nos permitir auxiliá-lo nesta atividade',
-		consentCheckbox1: 'Sim, eu consinto em usar a função do calendário.',
+		consentCheckbox1: 'Sim, eu concordo com o uso da função Calendário.',
 		consentCheckbox2: 'Leia mais sobre a nossa',
 		privacyPolicy: 'Política de Privacidade',
 		privacyPolicyURL: 'https://www.novonordisk.com.br/privacy-policy.html',
