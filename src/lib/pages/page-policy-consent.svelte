@@ -51,18 +51,20 @@
 		>
 			<h1 class="h1">{$i18n.text.policyConsent.title}</h1>
 
-			<p class="leading-relaxed max-w-xs">
-				{$i18n.text.policyConsent.description1}
-				<span class="font-bold">{$i18n.text.productName}</span>, {$i18n.text.policyConsent
-					.description2}
+			<p class="leading-relaxed max-w-sm text-balance">
+				{@html $i18n.text.policyConsent.description1}
+				{#if $i18n.text.productName}
+					<span class="font-bold">{$i18n.text.productName}</span>,
+				{/if}
+				{$i18n.text.policyConsent.description2}
 			</p>
-			<p class="leading-relaxed">
-				{$i18n.text.policyConsent.description3}
+			<p class="leading-relaxed text-balance">
+				{@html $i18n.text.policyConsent.description3}
 			</p>
 		</div>
 		<div>
 			<label for="custom-checkbox" class="flex cursor-pointer ml-4 mb-5">
-				<span class="bg-teal-600 flex items-center justify-center w-5 h-5 rounded-full">
+				<span class="bg-teal-600 flex items-center justify-center shrink-0 w-5 h-5 rounded-full">
 					<input
 						bind:checked={consent}
 						type="checkbox"
@@ -71,7 +73,7 @@
 					/>
 					<span class="hidden peer-checked/checkbox:block">
 						<svg
-							class=" h-3 w-3 text-white"
+							class="h-3 w-3 text-white"
 							width="14"
 							height="12"
 							viewBox="0 0 14 12"
@@ -89,7 +91,7 @@
 					<span class="block">{$i18n.text.policyConsent.consentCheckbox1}</span>
 					<span class="block"
 						>{$i18n.text.policyConsent.consentCheckbox2}
-						<a href="{$i18n.text.policyConsent.privacyPolicyURL}" class="underline" target="_blank">
+						<a href={$i18n.text.policyConsent.privacyPolicyURL} class="underline" target="_blank">
 							{$i18n.text.policyConsent.privacyPolicy}
 						</a>
 						.

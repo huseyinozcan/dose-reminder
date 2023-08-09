@@ -110,7 +110,7 @@
 		<div>
 			<!-- shouldNotifyDayBefore checkbox -->
 			<label for="custom-checkbox" class="flex items-center cursor-pointer ml-4 my-5">
-				<span class="bg-teal-600 flex items-center justify-center w-5 h-5 rounded-full">
+				<span class="bg-teal-600 flex items-center justify-center shrink-0 w-5 h-5 rounded-full">
 					<input
 						bind:checked={$logic.shouldNotifyDayBefore}
 						type="checkbox"

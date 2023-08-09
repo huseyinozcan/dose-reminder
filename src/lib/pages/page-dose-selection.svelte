@@ -12,14 +12,18 @@
 			<Steps stepIndex={0} />
 		</div>
 
-		<div class="text-center pb-3 lg:max-w-sm lg:mx-auto">
+		<div class="text-center lg:max-w-sm lg:mx-auto">
 			<h1 class="h1 mb-4 lg:mb-8">{$i18n.text.doseSelection.title}</h1>
-			<p class="text-base lg:text-lg">
+			<p class="text-base lg:text-lg text-balance">
 				<span class="inline-block">{$i18n.text.doseSelection.description1}</span>
-				<span class="inline-block">
-					<span class="font-bold">{$i18n.text.productName}</span>
-					{$i18n.text.doseSelection.description2}
-				</span>
+				{#if $i18n.text.doseSelection.description2}
+					<span class="inline-block">
+						{#if $i18n.text.productName}
+							<span class="font-bold">{$i18n.text.productName}</span>
+						{/if}
+						{$i18n.text.doseSelection.description2}
+					</span>
+				{/if}
 			</p>
 		</div>
 	</slot>
@@ -55,6 +59,12 @@
 					/>
 				</button>
 			{/each}
+
+			{#if $i18n.text.doseSelection.illustrationPurposes}
+				<div class="text-gray-400 text-center text-xs">
+					{$i18n.text.doseSelection.illustrationPurposes}
+				</div>
+			{/if}
 		</div>
 		<button
 			class="btn btn-primary w-full relative"

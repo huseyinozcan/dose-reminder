@@ -71,6 +71,9 @@
 }
 
 @layer utilities {
+	.text-balance{
+		text-wrap: balance;
+	}
 	.animate-pulse {
 		animation: pulse 5s infinite;
 	}

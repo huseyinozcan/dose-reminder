@@ -6,12 +6,14 @@ export const pt: Dictionary = {
 		title: 'Bem-vindo(a)!',
 		description1: 'Para começar, vamos garantir',
 		description2: 'qual caneta de Sogroya® você tem em mãos.',
+		illustrationPurposes: '',
 		proceedButton: 'Vamos começar'
 	},
 	policyConsent: {
 		title: 'Primeiros Passos',
 		description1: 'Para ajudá-lo(a) em seu tratamento com',
-		description2: 'você pode escolher configurar lembretes semanais diretamente no calendário do seu smartphone.',
+		description2:
+			'você pode escolher configurar lembretes semanais diretamente no calendário do seu smartphone.',
 		description3:
 			'Se você deseja configurar um lembrete, por favor marque a caixa abaixo para nos permitir auxiliá-lo nesta atividade',
 		consentCheckbox1: 'Sim, eu concordo com o uso da função Calendário.',

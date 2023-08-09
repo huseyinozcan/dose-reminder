@@ -1,29 +1,34 @@
 import { Day, type Dictionary } from '$lib/types';
 
 export const jp: Dictionary = {
-	productName: 'Sogroya®',
+	productName: '',
 	doseSelection: {
-		title: 'ようこそ！',
-		description1: '始める前に、お手元の',
-		description2: 'ペンを確認しましょう。',
-		proceedButton: '始めましょう'
+		title: 'ソグルーヤ®皮下注 リマインダーツール',
+		description1: 'ご使用になるソグルーヤ®皮下注を選択してください。',
+		description2: '',
+		illustrationPurposes: '写真はイメージです。',
+		proceedButton: '設定を始めましょう'
 	},
 	policyConsent: {
-		title: '始めましょう',
-		description1: 'をスムーズに開始するために、',
-		description2: '週ごとのリマインダーを直接カレンダーに設定することができます。',
-		description3:
-			'リマインダーを設定する場合は、必要な入力を計算するためにチェックボックスをオンにしてください。',
-		consentCheckbox1: 'はい、カレンダー機能を利用することに同意します。',
+		title: '設定を始めましょう',
+		description1: `1週間に1回、ソグルーヤ®皮下注の治療を<br/>
+						忘れずに行うため、毎週同じ曜日、同じ時間に<br/>
+						リマインドを行うツールです。<br/>
+						お手持ちのパソコン、スマートフォン<br/>
+						のカレンダーに設定することができます。`,
+		description2: '',
+		description3: `本リマインダーを設定する場合は、<br/>
+					<span class="whitespace-nowrap">以下のチェックボックスにチェックをお願いします。</span>`,
+		consentCheckbox1: '本リマインダーを利用することに同意します。',
 		consentCheckbox2: '詳細については、弊社の',
 		privacyPolicy: 'プライバシーポリシー',
 		privacyPolicyURL: 'https://www.novonordisk.co.jp/privacy-policy.html',
 		proceedButton: 'はい、リマインダーを設定する'
 	},
 	dateTimeSelection: {
-		dayTitle: 'いつ？',
-		dayDescription1: '週に1回の',
-		dayDescription2: '服薬リマインダーの日を選択してください。',
+		dayTitle: '何曜日？',
+		dayDescription1: '1週間に1回、ソグルーヤ®皮下注の',
+		dayDescription2: '治療を行う曜日を選択してください。',
 		day: (day: Day | string) => {
 			switch (day) {
 				case Day.MONDAY:
@@ -44,18 +49,17 @@ export const jp: Dictionary = {
 					return day;
 			}
 		},
-		timeTitle: 'いつ？',
-		timeDescription1: '毎日の服薬リマインダーの時間を選択してください。',
-		timeDescription2: '',
+		timeTitle: '何時？',
+		timeDescription1: 'ソグルーヤ®皮下注の治療を',
+		timeDescription2: '行う時間を選択してください。',
 		hour: '時間：',
 		minute: '分：',
 		dayBeforeCheckbox: '前日に通知を受け取りたい',
 		proceedButton: '次へ'
 	},
 	downloadCalendarFile: {
-		title: 'リマインダーのダウンロード',
-		description:
-			'リマインダーをデバイスにダウンロードする準備ができました。続行するには、以下のダウンロードボタンを押してください。',
+		title: `<span class="whitespace-nowrap">リマインダーのダウンロード</span>`,
+		description: `<span class="inline-block sm:-mx-16">リマインダーをデバイスにダウンロードする準備が<br/>できました。続行するには、以下のカレンダーにダウンロード<br/>ボタンを押してください。</span>`,
 		proceedButton: 'カレンダーにダウンロード',
 		mainNotificationTitle: 'SogroyaⓇの週間用量を摂取する時間です',
 		mainNotificationDescription: (dose: string) => `SogroyaⓇを${dose}摂取してください`,

@@ -65,6 +65,7 @@ export interface Dictionary {
 		title: string;
 		description1: string;
 		description2: string;
+		illustrationPurposes: string;
 		proceedButton: string;
 	};
 	policyConsent: {

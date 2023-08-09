@@ -6,6 +6,7 @@ export const de: Dictionary = {
 		title: 'Willkommen!',
 		description1: 'Um loszulegen, stellen wir sicher, welchen',
 		description2: 'Pen Sie vor sich haben.',
+		illustrationPurposes: '',
 		proceedButton: 'Lassen Sie uns anfangen'
 	},
 	policyConsent: {

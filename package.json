@@ -40,7 +40,7 @@
 		"vite": "^4.3.0"
 	},
 	"lint-staged": {
-		"*.{ts,js,css,postcss,html,json,yaml,svelte,md}": [
+		"*.{ts,js,html,json,yaml,svelte,md}": [
 			"prettier --plugin-search-dir . --write",
 			"pnpm check",
 			"pnpm eslint --fix",

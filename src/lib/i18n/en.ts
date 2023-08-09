@@ -6,6 +6,7 @@ export const en: Dictionary = {
 		title: 'Welcome!',
 		description1: `To get started let's make sure what`,
 		description2: 'pen you have in front of you.',
+		illustrationPurposes: '',
 		proceedButton: `Let's get started`
 	},
 	policyConsent: {
@@ -17,7 +18,8 @@ export const en: Dictionary = {
 		consentCheckbox1: 'Yes I consent to use the calendar function.',
 		consentCheckbox2: 'Read more about our',
 		privacyPolicy: 'Privacy Policy',
-		privacyPolicyURL: 'https://www.novonordisk.com/data-privacy-and-user-rights/privacy-policy.html',
+		privacyPolicyURL:
+			'https://www.novonordisk.com/data-privacy-and-user-rights/privacy-policy.html',
 		proceedButton: 'Yes, set reminder'
 	},
 	dateTimeSelection: {

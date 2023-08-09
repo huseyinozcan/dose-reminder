@@ -49,10 +49,10 @@
 		<div
 			class="flex-1 flex flex-col items-center lg:justify-center text-center gap-y-6 mb-6 pt-12 lg:pt-0"
 		>
-			<h1 class="h1 lg:-mt-20">{$i18n.text.downloadCalendarFile.title}</h1>
+			<h1 class="h1 lg:-mt-20">{@html $i18n.text.downloadCalendarFile.title}</h1>
 
-			<p class="leading-relaxed max-w-[17rem] lg:max-w-xs">
-				{$i18n.text.downloadCalendarFile.description}
+			<p class="leading-relaxed max-w-[17rem] lg:max-w-xs 2xl:max-w-md text-balance">
+				{@html $i18n.text.downloadCalendarFile.description}
 			</p>
 		</div>
 		<div class="flex gap-3">
