@@ -6,7 +6,7 @@ type Callback<T> = (data: T) => void;
 // Define the event names and their corresponding event data types
 
 // Create a mapping from event names to arrays of callbacks
-const callbacks: Record<Event, Callback<any>[]> = {};
+const callbacks: Record<Event, Callback<any>[]> = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 // Create the event hub object
 export const eventHub = {

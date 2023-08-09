@@ -4,7 +4,6 @@ import { en, de, fr, pt, jp } from '../i18n';
 import { goto } from '$app/navigation';
 import { browser } from '$app/environment';
 import { eventHub } from './eventHub';
-import type { Events } from './events';
 
 const langDetails = new Map<Lang, LangDetails>([
 	[

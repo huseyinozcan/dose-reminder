@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { logic, i18n } from '$lib/stores';
-	import { DoseDetails, Page, clouds } from '$lib/types';
-	import { Layout, Steps } from '$lib/components';
+	import { DoseDetails, Page, clouds, Lang } from '$lib/types';
+	import { Layout, Steps, Modal } from '$lib/components';
+
+	let showModal = true;
 
 	let scrollTarget: HTMLElement;
 </script>
@@ -105,3 +107,27 @@
 		</div>
 	</slot>
 </Layout>
+
+{#if $i18n.lang === Lang.JP}
+	<Modal {showModal}>
+		<h2 slot="header" class="text-blue-500 text-xl text-center font-medium mb-8">
+			当コンテンツご利用に関する注意事項
+		</h2>
+
+		<div class="text-sm space-y-6">
+			<p>以下の点をご了承の上、ご覧ください。</p>
+			<p>
+				当コンテンツは、ソグルーヤ®皮下注による治療を受ける患者さんとそのご家族の方向けに情報を掲載しています。<br
+				/>
+				適正使用や安全性に関する情報を提供することを目的としており、医学的な判断、アドバイスを提供するものではないことをご了承ください。ソグルーヤ®皮下注や治療に関するご質問は、主治医に必ずご相談ください。
+			</p>
+			<p class="border-y border-blue-500 py-4 text-blue-500">
+				あなたは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さんまたはご家族の方ですか？
+			</p>
+		</div>
+
+		<div slot="comment" class="text-xs">
+			※一般の方への情報提供を目的としたものではありませんのでご了承ください。
+		</div>
+	</Modal>
+{/if}

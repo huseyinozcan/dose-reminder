@@ -8,6 +8,7 @@ export default {
 				'gray-300': '#CCCDD8',
 				'gray-400': '#8A99A5',
 				'teal-600': '#1CBCC3',
+				'blue-500': '#3b97de',
 				'blue-800': '#005AD2',
 				'blue-950': '#001965',
 				'indigo-950': '#292C4D',
