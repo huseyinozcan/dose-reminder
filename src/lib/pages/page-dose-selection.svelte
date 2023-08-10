@@ -3,9 +3,15 @@
 	import { DoseDetails, Page, clouds, Lang } from '$lib/types';
 	import { Layout, Steps, Modal } from '$lib/components';
 
-	let showModal = true;
+	let isWarningModalVisible = true;
+	let isWarningNoModalVisible = false;
 
 	let scrollTarget: HTMLElement;
+
+	function closeAllModals(): void {
+		isWarningModalVisible = false;
+		isWarningNoModalVisible = false;
+	}
 </script>
 
 <Layout>
@@ -109,7 +115,7 @@
 </Layout>
 
 {#if $i18n.lang === Lang.JP}
-	<Modal {showModal}>
+	<Modal isVisible={isWarningModalVisible}>
 		<h2 slot="header" class="text-blue-500 text-xl text-center font-medium mb-8">
 			当コンテンツご利用に関する注意事項
 		</h2>
@@ -126,8 +132,45 @@
 			</p>
 		</div>
 
-		<div slot="comment" class="text-xs">
+		<div class="my-6 flex items-center justify-center gap-6">
+			<!-- eslint-disable -->
+			<button
+				autofocus
+				on:click={closeAllModals}
+				type="button"
+				class="rounded-xl p-1.5 text-base bg-blue-950 text-white w-28 sm:w-40">はい</button
+			>
+			<!-- eslint-enable -->
+			<button
+				on:click={() => {
+					isWarningModalVisible = false;
+					isWarningNoModalVisible = true;
+				}}
+				type="button"
+				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40">いいえ</button
+			>
+		</div>
+
+		<div class="text-xs">
 			※一般の方への情報提供を目的としたものではありませんのでご了承ください。
+		</div>
+	</Modal>
+	<Modal isVisible={isWarningNoModalVisible}>
+		<div class="text-sm space-y-6">
+			<p>
+				当コンテンツは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さん、またはご家族の方向けのものです
+			</p>
+		</div>
+
+		<div class="mt-6 flex items-center justify-center gap-6">
+			<!-- eslint-enable -->
+			<button
+				on:click={closeAllModals}
+				type="button"
+				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40"
+			>
+				戻る
+			</button>
 		</div>
 	</Modal>
 {/if}

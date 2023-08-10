@@ -1,40 +1,29 @@
 <script lang="ts">
-	export let showModal: boolean;
+	export let isVisible = false;
 
 	let dialog: HTMLDialogElement;
 
-	$: if (dialog && showModal) dialog.showModal();
+	$: dialog && (isVisible ? show() : hide());
+
+	function show() {
+		dialog.showModal();
+	}
+	function hide() {
+		dialog.close();
+	}
 </script>
 
 <!-- eslint-disable -->
 <dialog
 	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
-	class="max-w-xl"
+	on:close={() => (isVisible = false)}
+	on:click|self={hide}
+	class="max-w-xl border-2 border-blue-800 mx-4 sm:mx-auto"
 >
 	<div on:click|stopPropagation>
 		<!-- eslint-enable -->
 		<slot name="header" />
 		<slot />
-
-		<div class="my-6 flex items-center justify-center gap-6">
-			<!-- eslint-disable -->
-			<button
-				autofocus
-				on:click={() => dialog.close()}
-				type="button"
-				class="rounded-xl p-1.5 text-base bg-blue-950 text-white w-40">はい</button
-			>
-			<!-- eslint-enable -->
-			<button
-				on:click={() => dialog.close()}
-				type="button"
-				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-40">いいえ</button
-			>
-		</div>
-
-		<slot name="comment" />
 	</div>
 </dialog>
 
