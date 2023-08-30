@@ -28,7 +28,7 @@ export const jp: Dictionary = {
 	dateTimeSelection: {
 		dayTitle: '何曜日？',
 		dayDescription1: '1週間に1回、ソグルーヤ®皮下注の',
-		dayDescription2: '治療を行う曜日を選択してください。',
+		dayDescription2: '治療を行う時間を選択してください。',
 		day: (day: Day | string) => {
 			switch (day) {
 				case Day.MONDAY:
@@ -61,9 +61,9 @@ export const jp: Dictionary = {
 		title: `<span class="whitespace-nowrap">リマインダーのダウンロード</span>`,
 		description: `<span class="inline-block sm:-mx-16">リマインダーをデバイスにダウンロードする準備が<br/>できました。続行するには、以下のカレンダーにダウンロード<br/>ボタンを押してください。</span>`,
 		proceedButton: 'カレンダーにダウンロード',
-		mainNotificationTitle: 'SogroyaⓇの週間用量を摂取する時間です',
+		mainNotificationTitle: 'ソグルーヤの注射をする時間です',
 		mainNotificationDescription: (dose: string) => `SogroyaⓇを${dose}摂取してください`,
-		dayBeforeNotificationTitle: '明日はSogroyaⓇの週間用量を摂取する日です',
+		dayBeforeNotificationTitle: '明日はソグルーヤの注射を行う日です',
 		dayBeforeNotificationDescription: (dose: string) =>
 			`明日のためにSogroyaⓇを${dose}準備してください`
 	}
