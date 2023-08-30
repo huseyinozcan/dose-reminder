@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let isVisible = false;
+	export let hideOnClickOutside = true;
 
 	let dialog: HTMLDialogElement;
 
@@ -17,7 +18,7 @@
 <dialog
 	bind:this={dialog}
 	on:close={() => (isVisible = false)}
-	on:click|self={hide}
+	on:click|self={() => hideOnClickOutside && hide()}
 	class="max-w-xl border-2 border-blue-800 mx-4 sm:mx-auto"
 >
 	<div on:click|stopPropagation>

@@ -115,7 +115,7 @@
 </Layout>
 
 {#if $i18n.lang === Lang.JP}
-	<Modal isVisible={isWarningModalVisible}>
+	<Modal isVisible={isWarningModalVisible} hideOnClickOutside={false}>
 		<h2 slot="header" class="text-blue-500 text-xl text-center font-medium mb-8">
 			当コンテンツご利用に関する注意事項
 		</h2>
@@ -155,7 +155,7 @@
 			※一般の方への情報提供を目的としたものではありませんのでご了承ください。
 		</div>
 	</Modal>
-	<Modal isVisible={isWarningNoModalVisible}>
+	<Modal isVisible={isWarningNoModalVisible} hideOnClickOutside={false}>
 		<div class="text-sm space-y-6">
 			<p>
 				当コンテンツは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さん、またはご家族の方向けのものです
@@ -165,7 +165,10 @@
 		<div class="mt-6 flex items-center justify-center gap-6">
 			<!-- eslint-enable -->
 			<button
-				on:click={closeAllModals}
+				on:click={() => {
+					isWarningModalVisible = true;
+					isWarningNoModalVisible = false;
+				}}
 				type="button"
 				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40"
 			>
