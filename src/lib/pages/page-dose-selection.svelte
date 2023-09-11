@@ -8,6 +8,8 @@
 
 	let scrollTarget: HTMLElement;
 
+	let imgFolder = $i18n.lang === Lang.JP ? '/img/jpn/' : '/img/';
+
 	function closeAllModals(): void {
 		isWarningModalVisible = false;
 		isWarningNoModalVisible = false;
@@ -62,7 +64,7 @@
 						style="width: 380px; height:125px;"
 						width="380"
 						height="125"
-						src={value.imageURL}
+						src={imgFolder + value.imageURL}
 						alt={value.label}
 					/>
 				</button>
