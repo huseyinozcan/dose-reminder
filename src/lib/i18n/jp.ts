@@ -28,7 +28,7 @@ export const jp: Dictionary = {
 	dateTimeSelection: {
 		dayTitle: '何曜日？',
 		dayDescription1: '1週間に1回、ソグルーヤ®皮下注の',
-		dayDescription2: '治療を行う時間を選択してください。',
+		dayDescription2: '治療を行う曜日を選択してください。',
 		day: (day: Day | string) => {
 			switch (day) {
 				case Day.MONDAY:
