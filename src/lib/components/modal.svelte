@@ -30,7 +30,7 @@
 
 <style>
 	dialog::backdrop {
-		@apply bg-black/20;
+		@apply bg-white;
 	}
 	dialog > div {
 		@apply p-4;
