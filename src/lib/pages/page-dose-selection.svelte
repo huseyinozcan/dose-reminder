@@ -117,65 +117,71 @@
 </Layout>
 
 {#if $i18n.lang === Lang.JP}
-	<Modal isVisible={isWarningModalVisible} hideOnClickOutside={false}>
+	<Modal isVisible={isWarningModalVisible || isWarningNoModalVisible} hideOnClickOutside={false}>
 		<h2 slot="header" class="text-blue-500 text-xl text-center font-medium mb-8">
-			当コンテンツご利用に関する注意事項
+			{#if isWarningModalVisible}
+				当コンテンツご利用に関する注意事項
+			{/if}
 		</h2>
 
-		<div class="text-sm space-y-6">
-			<p>以下の点をご了承の上、ご覧ください。</p>
-			<p>
-				当コンテンツは、ソグルーヤ®皮下注による治療を受ける患者さんとそのご家族の方向けに情報を掲載しています。<br
-				/>
-				適正使用や安全性に関する情報を提供することを目的としており、医学的な判断、アドバイスを提供するものではないことをご了承ください。ソグルーヤ®皮下注や治療に関するご質問は、主治医に必ずご相談ください。
-			</p>
-			<p class="border-y border-blue-500 py-4 text-blue-500">
-				あなたは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さんまたはご家族の方ですか？
-			</p>
-		</div>
+		{#if isWarningModalVisible}
+			<div class="text-sm space-y-6">
+				<p>以下の点をご了承の上、ご覧ください。</p>
+				<p>
+					当コンテンツは、ソグルーヤ®皮下注による治療を受ける患者さんとそのご家族の方向けに情報を掲載しています。<br
+					/>
+					適正使用や安全性に関する情報を提供することを目的としており、医学的な判断、アドバイスを提供するものではないことをご了承ください。ソグルーヤ®皮下注や治療に関するご質問は、主治医に必ずご相談ください。
+				</p>
+				<p class="border-y border-blue-500 py-4 text-blue-500">
+					あなたは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さんまたはご家族の方ですか？
+				</p>
+			</div>
 
-		<div class="my-6 flex items-center justify-center gap-6">
-			<!-- eslint-disable -->
-			<button
-				autofocus
-				on:click={closeAllModals}
-				type="button"
-				class="rounded-xl p-1.5 text-base bg-blue-950 text-white w-28 sm:w-40">はい</button
-			>
-			<!-- eslint-enable -->
-			<button
-				on:click={() => {
-					isWarningModalVisible = false;
-					isWarningNoModalVisible = true;
-				}}
-				type="button"
-				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40">いいえ</button
-			>
-		</div>
+			<div class="my-6 flex items-center justify-center gap-6">
+				<!-- eslint-disable -->
+				<button
+					autofocus
+					on:click={() => {
+						isWarningModalVisible = false;
+						isWarningNoModalVisible = false;
+					}}
+					type="button"
+					class="rounded-xl p-1.5 text-base bg-blue-950 text-white w-28 sm:w-40">はい</button
+				>
+				<!-- eslint-enable -->
+				<button
+					on:click={() => {
+						isWarningModalVisible = false;
+						isWarningNoModalVisible = true;
+					}}
+					type="button"
+					class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40">いいえ</button
+				>
+			</div>
 
-		<div class="text-xs">
-			※一般の方への情報提供を目的としたものではありませんのでご了承ください。
-		</div>
-	</Modal>
-	<Modal isVisible={isWarningNoModalVisible} hideOnClickOutside={false}>
-		<div class="text-sm space-y-6">
-			<p>
-				当コンテンツは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さん、またはご家族の方向けのものです
-			</p>
-		</div>
+			<div class="text-xs">
+				※一般の方への情報提供を目的としたものではありませんのでご了承ください。
+			</div>
+		{:else if isWarningNoModalVisible}
+			<div class="text-sm space-y-6">
+				<p>
+					当コンテンツは医師の診断を受けソグルーヤ®皮下注による治療を現在受けている、または、治療を受ける予定がある患者さん、またはご家族の方向けのものです
+				</p>
+			</div>
 
-		<div class="mt-6 flex items-center justify-center gap-6">
-			<!-- eslint-enable -->
-			<button
-				on:click={() => {
-					isWarningModalVisible = true;
-					isWarningNoModalVisible = false;
-				}}
-				type="button"
-				class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40"
-			>
-				戻る
-			</button>
-		</div>
+			<div class="mt-6 flex items-center justify-center gap-6">
+				<!-- eslint-enable -->
+				<button
+					on:click={() => {
+						isWarningModalVisible = true;
+						isWarningNoModalVisible = false;
+					}}
+					type="button"
+					class="rounded-xl p-1.5 text-base bg-blue-500 text-white w-28 sm:w-40"
+				>
+					戻る
+				</button>
+			</div>
+		{/if}
 	</Modal>
 {/if}
