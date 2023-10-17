@@ -9,11 +9,6 @@
 	let scrollTarget: HTMLElement;
 
 	let imgFolder = $i18n.lang === Lang.JP ? '/img/jpn/' : '/img/';
-
-	function closeAllModals(): void {
-		isWarningModalVisible = false;
-		isWarningNoModalVisible = false;
-	}
 </script>
 
 <Layout>
