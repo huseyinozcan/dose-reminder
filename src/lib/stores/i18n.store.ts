@@ -86,7 +86,6 @@ const viewStore = derived(dataStore, ($data) => {
 export const i18n = {
 	subscribe: viewStore.subscribe,
 	setLang: async (lang: Lang) => {
-		dataStore.update((s) => ({ ...s, lang }));
 		await goto(`?lang=${lang.toLowerCase()}`); // to make consent script work
 		location.reload();
 	}
